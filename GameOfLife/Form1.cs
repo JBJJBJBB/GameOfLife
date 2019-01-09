@@ -3,6 +3,7 @@
 //using System.ComponentModel;
 //using System.Data;
 using System.Drawing;
+using System.Linq;
 //using System.Linq;
 //using System.Text;
 //using System.Threading.Tasks;
@@ -268,5 +269,65 @@ namespace GameOfLife
             lFps.Text = "FPS: " + cFPS.ToString();
             cFPS = 0;
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            GameData ga = new GameData();
+            var savedata = comboBox1.SelectedItem as GameData;
+            ga.SaveGame(savedata);
+        }
+
+        private void loadButton_Click(object sender, EventArgs e)
+        {
+            GameData ga = new GameData();
+            var loaddata = comboBox1.SelectedItem as GameData;
+            try
+            {
+              ga.LoadGame(loaddata);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        
     }
-}
+
+        private void delButton_Click(object sender, EventArgs e)
+        {
+            GameData ga = new GameData();
+            var deldata = comboBox1.SelectedItem as GameData;
+            try
+            {
+                ga.DeleteGame(deldata);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        void Populate()
+        {
+
+            comboBox1.ResetText();
+            GameData ga = new GameData();
+
+            using (Connection conn = new Connection())
+            {
+                comboBox1.DataSource = conn.GameData.ToList();
+                comboBox1.DisplayMember = "Name";
+
+            }
+        }
+    }

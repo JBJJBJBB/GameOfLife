@@ -22,7 +22,7 @@ namespace GameOfLife
         byte[,] Cells = new byte[300, 150];
         byte[,] Cells2 = new byte[300, 150];
 
-
+        //Hej
         double CellsXsize = 0;
         double CellsYsize = 0;
 

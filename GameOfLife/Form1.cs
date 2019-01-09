@@ -50,7 +50,7 @@ namespace GameOfLife
 
         private void buttonExit_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
+            Application.Exit();
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -268,8 +268,11 @@ namespace GameOfLife
                     cRun.Checked = true;
                 else
                     cRun.Checked = false;
-
-
+                return true;
+            }
+            if (Form.ModifierKeys == Keys.None && keyData == Keys.Escape)
+            {
+                Application.Exit();
                 return true;
             }
             return base.ProcessDialogKey(keyData);

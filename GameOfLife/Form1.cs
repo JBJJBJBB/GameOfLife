@@ -10,10 +10,13 @@ using System.Linq;
 //using System.Text;
 //using System.Threading.Tasks;
 using System.Windows.Forms;
+
 namespace GameOfLife
 {
     public partial class Form1 : Form
     {
+        //Initialize
+
         Color[] cColors = new Color[9];
 
         SolidBrush cBrush = new SolidBrush(Color.Red);
@@ -29,14 +32,15 @@ namespace GameOfLife
         //Kommentar Daniel
         double CellsXsize = 0;
         double CellsYsize = 0;
-
+        
+   
         public Form1()
         {
             InitializeComponent();
             Populate();
         }
 
-
+        #region UI
         private void Form1_Load(object sender, EventArgs e)
         {
             cColors[0] = Color.Red;
@@ -71,8 +75,8 @@ namespace GameOfLife
             pView.Width = this.Width;
             pView.Height = this.Height - pView.Top;
 
-            CellsXsize = (double)pView.Width / CellsX;
-            CellsYsize = (double)pView.Height / CellsY;
+            CellsXsize = (double) pView.Width / CellsX;
+            CellsYsize = (double) pView.Height / CellsY;
 
             cRect.Width = Convert.ToInt32(CellsXsize);
             cRect.Height = Convert.ToInt32(CellsYsize);
@@ -120,8 +124,8 @@ namespace GameOfLife
             try
             {
 
-                double selX = Math.Round((double)(e.X - CellsXsize / 2) / CellsXsize);
-                double selY = Math.Round((double)(e.Y - CellsYsize / 2) / CellsYsize);
+                double selX = Math.Round((double) (e.X - CellsXsize / 2) / CellsXsize);
+                double selY = Math.Round((double) (e.Y - CellsYsize / 2) / CellsYsize);
 
                 lStats.Text = Convert.ToString(selX) + ", " + Convert.ToString(selY);
 
@@ -130,6 +134,7 @@ namespace GameOfLife
                     Cells[Convert.ToInt32(selX), Convert.ToInt32(selY)] = 1;
                     pView.Refresh();
                 }
+
                 if (e.Button == MouseButtons.Right)
                 {
                     Cells[Convert.ToInt32(selX), Convert.ToInt32(selY)] = 0;
@@ -147,6 +152,172 @@ namespace GameOfLife
         private void hSpeed_Scroll(object sender, ScrollEventArgs e)
         {
             timer1.Interval = hSpeed.Value;
+        }
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MainLoop();
+            pView.Refresh();
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void bLoadPreset_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string path = cFiles.Text;
+
+                if (!File.Exists(path))
+                {
+
+                }
+                else
+                {
+                    if (cRun.Checked == true)
+                    {
+                        cRun.Checked = false;
+                    }
+
+                    ClearCells();
+                    // Open the stream and read it back.
+                    using (StreamReader sr = File.OpenText(@path))
+                    {
+                        int yPos = 40;
+                        string s = "";
+                        while ((s = sr.ReadLine()) != null)
+                        {
+                            for (int i = 0; i < s.Length; i++)
+                            {
+                                if (s.Substring(i, 1) == "2")
+                                {
+                                    Cells[i + 50, yPos] = 0;
+                                }
+                                else
+                                {
+                                    Cells[i + 50, yPos] = 1;
+                                }
+                            }
+                            yPos++;
+                        }
+                    }
+                }
+                pView.Refresh();
+            }
+            catch
+            {
+
+            }
+        }
+
+
+
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+     
+        }
+
+        private void saveButton_Click(object sender, EventArgs e) 
+        {
+            HelperClass help = new HelperClass();
+            string Name = nameBox.Text.ToString();
+            try
+            {
+                help.MakeSaveData(Cells, Name);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            Populate();
+        } 
+
+        private void loadButton_Click(object sender, EventArgs e) 
+        {
+            GameData ga = new GameData();
+            HelperClass helper = new HelperClass();;
+           try
+            {
+                var loaddata = comboBox1.SelectedItem as GameData;
+                byte [,] LoadedCells = helper.MakeLoadData(loaddata);
+                
+                if (cRun.Checked == true)
+                {
+                    cRun.Checked = false;
+                }
+
+                
+            ClearCells();
+            pView.Refresh();
+             
+            Populate();
+             }
+            catch
+            {
+
+            }
+
+
+        }
+
+        private void delButton_Click(object sender, EventArgs e) 
+        {
+            var deldata = comboBox1.SelectedItem as GameData;
+            GameData ga = new GameData();
+            try
+            {
+               ga.DeleteSave(deldata);
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            Populate();
+        }
+
+        private void editButton_Click(object sender, EventArgs e) 
+        {
+           
+            HelperClass helper = new HelperClass();
+            Name = nameBox.Text.ToString();
+            
+            try
+            {
+                var g = comboBox1.SelectedItem as GameData;
+                helper.MakeEditData(g,Cells,Name);
+                Populate();
+            }
+            catch
+            {
+
+            }
+        }
+
+        #endregion
+
+        // Modules 
+        #region Modules
+        void Populate()
+        {
+
+            comboBox1.ResetText();
+            GameData ga = new GameData();
+
+            using (Connection conn = new Connection())
+            {
+                var ds = conn.GameData.ToList();
+                comboBox1.DataSource = ds;
+                comboBox1.DisplayMember = "GameName";
+
+            }
         }
 
         public void MainLoop()
@@ -212,6 +383,7 @@ namespace GameOfLife
                         if (cCount > 3) //Overpopulation, cell dies
                             Cells2[x, y] = 0;
                     }
+
                     if (Cells[x, y] == 0) //Current cell is dead
                     {
                         if (cCount == 3) //A new cell is born!
@@ -219,6 +391,7 @@ namespace GameOfLife
                     }
                 }
             }
+
             CopyCellsFromBuffer();
             cFPS++;
         }
@@ -260,17 +433,6 @@ namespace GameOfLife
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MainLoop();
-            pView.Refresh();
-        }
-
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
         protected override bool ProcessDialogKey(Keys keyData)
         {
             if (Form.ModifierKeys == Keys.None && keyData == Keys.F2)
@@ -282,11 +444,13 @@ namespace GameOfLife
                     cRun.Checked = false;
                 return true;
             }
+
             if (Form.ModifierKeys == Keys.None && keyData == Keys.Escape)
             {
                 Application.Exit();
                 return true;
             }
+
             return base.ProcessDialogKey(keyData);
         }
 
@@ -296,125 +460,7 @@ namespace GameOfLife
             cFPS = 0;
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            HelperClass help = new HelperClass();
-            string Name = comboBox1.Text.ToString() ;
-            try
-            {
-                help.MakeSaveData(Cells, Name);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            } 
-            Populate();
-        }
-
-        private void loadButton_Click(object sender, EventArgs e)
-        {
-            GameData ga = new GameData();
-            var loaddata = comboBox1.SelectedItem as GameData;
-            try
-            {
-           //     ga.LoadGame(loaddata);
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-
-        }
-
-        private void delButton_Click(object sender, EventArgs e)
-        {
-            GameData ga = new GameData();
-            var deldata = comboBox1.SelectedItem as GameData;
-            try
-            {
-                ga.DeleteGame(deldata);
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-
-        void Populate()
-        {
-
-            comboBox1.ResetText();
-            GameData ga = new GameData();
-
-            using (Connection conn = new Connection())
-            {
-                comboBox1.DataSource = conn.GameData.ToList();
-                comboBox1.DisplayMember = "GameName";
-
-            }
-        }
-
-        private void bLoadPreset_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string path = cFiles.Text;
-
-                if (!File.Exists(path))
-                {
-
-                }
-                else
-                {
-                    if (cRun.Checked == true)
-                    {
-                        cRun.Checked = false;
-                    }
-                    ClearCells();
-                    // Open the stream and read it back.
-                    using (StreamReader sr = File.OpenText(@path))
-                    {
-                        int yPos = 40;
-                        string s = "";
-                        while ((s = sr.ReadLine()) != null)
-                        {
-                            for (int i = 0; i < s.Length; i++)
-                            {
-                                if (s.Substring(i, 1) == "2")
-                                {
-                                    Cells[i + 50, yPos] = 0;
-                                }
-                                else
-                                {
-                                    Cells[i + 50, yPos] = 1;
-                                }
-
-                            }
-                            yPos++;
-
-                            //Console.WriteLine(s);
-                        }
-                    }
-                }
-                pView.Refresh();
-
-            }
-            catch
-            {
-
-            }
-        }
+   
     }
+#endregion
 }

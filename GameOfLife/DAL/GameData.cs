@@ -1,3 +1,5 @@
+using System.Data.Entity.Migrations;
+
 namespace GameOfLife
 {
     using System.ComponentModel.DataAnnotations;
@@ -15,10 +17,10 @@ namespace GameOfLife
 
 
 
-        //CRUD
+        #region  //CRUD
 
 
-        //C
+        //Create 
         public void SaveGame(GameData g)
         {
             using (Connection connection = new Connection())
@@ -28,38 +30,46 @@ namespace GameOfLife
                 connection.SaveChanges();
             }
         }
-        //R
-        //public void LoadGame(GameData g)
-        //{
-        //    using (Connection connection = new Connection())
-        //    {
-        //        var objecttoLoad = g as GameData;
-        //        connection.GameData.Find(g);
 
+        //Read
 
-        //    }
-
-        //}
-
-
-        //U
-
-
-
-        //D (TODO)
-
-
-        public void DeleteGame(GameData o)
+        public string LoadGame(GameData g)
         {
-            using (Connection context = new Connection())
+            using (Connection connection = new Connection())
             {
-                var objecttoRemove = context.GameData.Find(o);
-                context.GameData.Attach(o);
-                context.GameData.Remove(o);
-                context.SaveChanges();
+                var objecttoLoad = g as GameData;
+                string SeedString = objecttoLoad.Seed.ToString();
+                return SeedString;
+            }
+        }
+
+        //Update
+
+        public void EditSave(GameData g)
+        {
+
+            using (Connection connection = new Connection())
+            {
+                var objecttoedit = g as GameData;
+                connection.GameData.AddOrUpdate(g);
+                connection.SaveChanges();
+            }
+        }
+
+
+        //Delete
+
+        public void DeleteSave(GameData g)
+        {
+            using (Connection connection = new Connection())
+            {
+                int remID =  g.Id;
+                var gametoremove = connection.GameData.Find(remID);
+                connection.GameData.Remove(gametoremove);
+                connection.SaveChanges();
             }
 
-
         }
+#endregion
     }
 }

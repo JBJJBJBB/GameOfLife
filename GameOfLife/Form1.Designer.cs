@@ -45,6 +45,8 @@
             this.delButton = new System.Windows.Forms.Button();
             this.cFiles = new System.Windows.Forms.ComboBox();
             this.bLoadPreset = new System.Windows.Forms.Button();
+            this.editButton = new System.Windows.Forms.Button();
+            this.nameBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -151,8 +153,8 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(218, 0);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Location = new System.Drawing.Point(236, 19);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(145, 21);
             this.comboBox1.TabIndex = 8;
@@ -161,7 +163,7 @@
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(364, 0);
+            this.saveButton.Location = new System.Drawing.Point(383, 0);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(80, 20);
             this.saveButton.TabIndex = 9;
@@ -172,7 +174,7 @@
             // loadButton
             // 
             this.loadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadButton.Location = new System.Drawing.Point(447, 0);
+            this.loadButton.Location = new System.Drawing.Point(464, 0);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(80, 20);
             this.loadButton.TabIndex = 10;
@@ -183,7 +185,7 @@
             // delButton
             // 
             this.delButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.delButton.Location = new System.Drawing.Point(527, 1);
+            this.delButton.Location = new System.Drawing.Point(464, 20);
             this.delButton.Name = "delButton";
             this.delButton.Size = new System.Drawing.Size(80, 20);
             this.delButton.TabIndex = 11;
@@ -194,7 +196,7 @@
             // cFiles
             // 
             this.cFiles.FormattingEnabled = true;
-            this.cFiles.Location = new System.Drawing.Point(639, 2);
+            this.cFiles.Location = new System.Drawing.Point(640, 8);
             this.cFiles.Margin = new System.Windows.Forms.Padding(2);
             this.cFiles.Name = "cFiles";
             this.cFiles.Size = new System.Drawing.Size(145, 21);
@@ -202,13 +204,31 @@
             // 
             // bLoadPreset
             // 
-            this.bLoadPreset.Location = new System.Drawing.Point(790, 1);
+            this.bLoadPreset.Location = new System.Drawing.Point(789, 7);
             this.bLoadPreset.Name = "bLoadPreset";
             this.bLoadPreset.Size = new System.Drawing.Size(75, 23);
             this.bLoadPreset.TabIndex = 13;
-            this.bLoadPreset.Text = "Load";
+            this.bLoadPreset.Text = "LoadLocal";
             this.bLoadPreset.UseVisualStyleBackColor = true;
             this.bLoadPreset.Click += new System.EventHandler(this.bLoadPreset_Click);
+            // 
+            // editButton
+            // 
+            this.editButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editButton.Location = new System.Drawing.Point(383, 20);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(80, 20);
+            this.editButton.TabIndex = 14;
+            this.editButton.Text = "Edit";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
+            // 
+            // nameBox
+            // 
+            this.nameBox.Location = new System.Drawing.Point(236, 1);
+            this.nameBox.Name = "nameBox";
+            this.nameBox.Size = new System.Drawing.Size(145, 20);
+            this.nameBox.TabIndex = 15;
             // 
             // Form1
             // 
@@ -217,6 +237,8 @@
             this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(1222, 594);
             this.ControlBox = false;
+            this.Controls.Add(this.nameBox);
+            this.Controls.Add(this.editButton);
             this.Controls.Add(this.bLoadPreset);
             this.Controls.Add(this.cFiles);
             this.Controls.Add(this.delButton);
@@ -262,6 +284,8 @@
         private System.Windows.Forms.Button delButton;
         private System.Windows.Forms.ComboBox cFiles;
         private System.Windows.Forms.Button bLoadPreset;
+        private System.Windows.Forms.Button editButton;
+        private System.Windows.Forms.TextBox nameBox;
     }
 }
 

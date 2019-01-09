@@ -43,16 +43,17 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
             this.delButton = new System.Windows.Forms.Button();
+            this.cFiles = new System.Windows.Forms.ComboBox();
+            this.bLoadPreset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pView)).BeginInit();
             this.SuspendLayout();
             // 
             // pView
             // 
             this.pView.BackColor = System.Drawing.Color.Black;
-            this.pView.Location = new System.Drawing.Point(0, 60);
-            this.pView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pView.Location = new System.Drawing.Point(0, 39);
             this.pView.Name = "pView";
-            this.pView.Size = new System.Drawing.Size(1425, 846);
+            this.pView.Size = new System.Drawing.Size(950, 550);
             this.pView.TabIndex = 0;
             this.pView.TabStop = false;
             this.pView.Click += new System.EventHandler(this.pView_Click);
@@ -63,10 +64,9 @@
             // buttonExit
             // 
             this.buttonExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonExit.Location = new System.Drawing.Point(1312, 3);
-            this.buttonExit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonExit.Location = new System.Drawing.Point(1174, 0);
             this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(54, 48);
+            this.buttonExit.Size = new System.Drawing.Size(36, 31);
             this.buttonExit.TabIndex = 1;
             this.buttonExit.Text = "X";
             this.buttonExit.UseVisualStyleBackColor = true;
@@ -75,10 +75,9 @@
             // bClear
             // 
             this.bClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bClear.Location = new System.Drawing.Point(202, -2);
-            this.bClear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.bClear.Location = new System.Drawing.Point(135, -1);
             this.bClear.Name = "bClear";
-            this.bClear.Size = new System.Drawing.Size(120, 31);
+            this.bClear.Size = new System.Drawing.Size(80, 20);
             this.bClear.TabIndex = 2;
             this.bClear.Text = "Clear";
             this.bClear.UseVisualStyleBackColor = true;
@@ -88,10 +87,9 @@
             // 
             this.lStats.AutoSize = true;
             this.lStats.ForeColor = System.Drawing.Color.Red;
-            this.lStats.Location = new System.Drawing.Point(-2, 5);
-            this.lStats.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lStats.Location = new System.Drawing.Point(-1, 3);
             this.lStats.Name = "lStats";
-            this.lStats.Size = new System.Drawing.Size(14, 20);
+            this.lStats.Size = new System.Drawing.Size(10, 13);
             this.lStats.TabIndex = 3;
             this.lStats.Text = "-";
             // 
@@ -103,10 +101,10 @@
             // 
             // hSpeed
             // 
-            this.hSpeed.Location = new System.Drawing.Point(195, 31);
+            this.hSpeed.Location = new System.Drawing.Point(130, 20);
             this.hSpeed.Minimum = 1;
             this.hSpeed.Name = "hSpeed";
-            this.hSpeed.Size = new System.Drawing.Size(128, 17);
+            this.hSpeed.Size = new System.Drawing.Size(85, 17);
             this.hSpeed.TabIndex = 4;
             this.hSpeed.Value = 50;
             this.hSpeed.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hSpeed_Scroll);
@@ -116,10 +114,9 @@
             this.cRun.AutoSize = true;
             this.cRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cRun.ForeColor = System.Drawing.Color.Red;
-            this.cRun.Location = new System.Drawing.Point(78, 34);
-            this.cRun.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cRun.Location = new System.Drawing.Point(52, 22);
             this.cRun.Name = "cRun";
-            this.cRun.Size = new System.Drawing.Size(109, 24);
+            this.cRun.Size = new System.Drawing.Size(75, 17);
             this.cRun.TabIndex = 5;
             this.cRun.Text = "Run (F2)";
             this.cRun.UseVisualStyleBackColor = true;
@@ -127,10 +124,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(78, -2);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button1.Location = new System.Drawing.Point(52, -1);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 31);
+            this.button1.Size = new System.Drawing.Size(80, 20);
             this.button1.TabIndex = 6;
             this.button1.Text = "Step";
             this.button1.UseVisualStyleBackColor = true;
@@ -140,10 +136,9 @@
             // 
             this.lFps.AutoSize = true;
             this.lFps.ForeColor = System.Drawing.Color.Red;
-            this.lFps.Location = new System.Drawing.Point(-2, 35);
-            this.lFps.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lFps.Location = new System.Drawing.Point(-1, 23);
             this.lFps.Name = "lFps";
-            this.lFps.Size = new System.Drawing.Size(14, 20);
+            this.lFps.Size = new System.Drawing.Size(10, 13);
             this.lFps.TabIndex = 7;
             this.lFps.Text = "-";
             // 
@@ -156,19 +151,19 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(327, 0);
+            this.comboBox1.Location = new System.Drawing.Point(218, 0);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(215, 28);
+            this.comboBox1.Size = new System.Drawing.Size(145, 21);
             this.comboBox1.TabIndex = 8;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(546, 0);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.saveButton.Location = new System.Drawing.Point(364, 0);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(120, 31);
+            this.saveButton.Size = new System.Drawing.Size(80, 20);
             this.saveButton.TabIndex = 9;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -177,10 +172,9 @@
             // loadButton
             // 
             this.loadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadButton.Location = new System.Drawing.Point(671, 0);
-            this.loadButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.loadButton.Location = new System.Drawing.Point(447, 0);
             this.loadButton.Name = "loadButton";
-            this.loadButton.Size = new System.Drawing.Size(120, 31);
+            this.loadButton.Size = new System.Drawing.Size(80, 20);
             this.loadButton.TabIndex = 10;
             this.loadButton.Text = "Load";
             this.loadButton.UseVisualStyleBackColor = true;
@@ -189,22 +183,42 @@
             // delButton
             // 
             this.delButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.delButton.Location = new System.Drawing.Point(790, 1);
-            this.delButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.delButton.Location = new System.Drawing.Point(527, 1);
             this.delButton.Name = "delButton";
-            this.delButton.Size = new System.Drawing.Size(120, 31);
+            this.delButton.Size = new System.Drawing.Size(80, 20);
             this.delButton.TabIndex = 11;
             this.delButton.Text = "Delete";
             this.delButton.UseVisualStyleBackColor = true;
             this.delButton.Click += new System.EventHandler(this.delButton_Click);
             // 
+            // cFiles
+            // 
+            this.cFiles.FormattingEnabled = true;
+            this.cFiles.Location = new System.Drawing.Point(639, 2);
+            this.cFiles.Margin = new System.Windows.Forms.Padding(2);
+            this.cFiles.Name = "cFiles";
+            this.cFiles.Size = new System.Drawing.Size(145, 21);
+            this.cFiles.TabIndex = 12;
+            // 
+            // bLoadPreset
+            // 
+            this.bLoadPreset.Location = new System.Drawing.Point(790, 1);
+            this.bLoadPreset.Name = "bLoadPreset";
+            this.bLoadPreset.Size = new System.Drawing.Size(75, 23);
+            this.bLoadPreset.TabIndex = 13;
+            this.bLoadPreset.Text = "Load";
+            this.bLoadPreset.UseVisualStyleBackColor = true;
+            this.bLoadPreset.Click += new System.EventHandler(this.bLoadPreset_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Navy;
-            this.ClientSize = new System.Drawing.Size(1436, 914);
+            this.ClientSize = new System.Drawing.Size(1222, 594);
             this.ControlBox = false;
+            this.Controls.Add(this.bLoadPreset);
+            this.Controls.Add(this.cFiles);
             this.Controls.Add(this.delButton);
             this.Controls.Add(this.loadButton);
             this.Controls.Add(this.saveButton);
@@ -218,7 +232,6 @@
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.pView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Game Of Life";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -247,6 +260,8 @@
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button loadButton;
         private System.Windows.Forms.Button delButton;
+        private System.Windows.Forms.ComboBox cFiles;
+        private System.Windows.Forms.Button bLoadPreset;
     }
 }
 

@@ -4,6 +4,7 @@ using System;
 //using System.ComponentModel;
 //using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 //using System.Linq;
 //using System.Text;
@@ -48,7 +49,15 @@ namespace GameOfLife
             cColors[7] = Color.DarkSeaGreen;
             cColors[8] = Color.Orange;
 
+            try
+            {
+                string[] files = System.IO.Directory.GetFiles(@"Presets\");
+                this.cFiles.Items.AddRange(files);
+            }
+            catch
+            {
 
+            }
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
@@ -353,6 +362,57 @@ namespace GameOfLife
             {
                 comboBox1.DataSource = conn.GameData.ToList();
                 comboBox1.DisplayMember = "GameName";
+
+            }
+        }
+
+        private void bLoadPreset_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string path = cFiles.Text;
+
+                if (!File.Exists(path))
+                {
+
+                }
+                else
+                {
+                    if (cRun.Checked == true)
+                    {
+                        cRun.Checked = false;
+                    }
+                    ClearCells();
+                    // Open the stream and read it back.
+                    using (StreamReader sr = File.OpenText(@path))
+                    {
+                        int yPos = 40;
+                        string s = "";
+                        while ((s = sr.ReadLine()) != null)
+                        {
+                            for (int i = 0; i < s.Length; i++)
+                            {
+                                if (s.Substring(i, 1) == "2")
+                                {
+                                    Cells[i + 50, yPos] = 0;
+                                }
+                                else
+                                {
+                                    Cells[i + 50, yPos] = 1;
+                                }
+
+                            }
+                            yPos++;
+
+                            //Console.WriteLine(s);
+                        }
+                    }
+                }
+                pView.Refresh();
+
+            }
+            catch
+            {
 
             }
         }

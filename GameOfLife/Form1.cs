@@ -7,7 +7,7 @@ using System.Drawing;
 //using System.Text;
 //using System.Threading.Tasks;
 using System.Windows.Forms;
-
+//Kommentar BJörn
 namespace GameOfLife
 {
     public partial class Form1 : Form
@@ -68,7 +68,7 @@ namespace GameOfLife
             {
                 for (int x = 0; x < CellsX; x++)
                 {
-                    if (Cells[x,y] == 1)
+                    if (Cells[x, y] == 1)
                     {
                         double tempX = x * CellsXsize;
                         double tempY = y * CellsYsize;
@@ -96,11 +96,11 @@ namespace GameOfLife
             try
             {
 
-                    double selX = Math.Round((double)(e.X - CellsXsize / 2) / CellsXsize);
-                    double selY = Math.Round((double)(e.Y - CellsYsize / 2) / CellsYsize);
+                double selX = Math.Round((double)(e.X - CellsXsize / 2) / CellsXsize);
+                double selY = Math.Round((double)(e.Y - CellsYsize / 2) / CellsYsize);
 
                 lStats.Text = Convert.ToString(selX) + ", " + Convert.ToString(selY);
-                   
+
                 if (e.Button == MouseButtons.Left)
                 {
                     Cells[Convert.ToInt32(selX), Convert.ToInt32(selY)] = 1;
@@ -150,11 +150,11 @@ namespace GameOfLife
                                 tempY = mod((y - 1), CellsY);
                                 break;
                             case 2:
-                                tempX = mod((x + 1),CellsX);
-                                tempY = mod((y - 1),CellsY);
+                                tempX = mod((x + 1), CellsX);
+                                tempY = mod((y - 1), CellsY);
                                 break;
                             case 3:
-                                tempX = mod((x - 1),CellsX);
+                                tempX = mod((x - 1), CellsX);
                                 tempY = mod(y, CellsY);
                                 break;
                             case 4:
@@ -163,7 +163,7 @@ namespace GameOfLife
                                 break;
                             case 5:
                                 tempX = mod((x - 1), CellsX);
-                                tempY = mod((y + 1),CellsY);
+                                tempY = mod((y + 1), CellsY);
                                 break;
                             case 6:
                                 tempX = mod(x, CellsX);
@@ -171,11 +171,11 @@ namespace GameOfLife
                                 break;
                             case 7:
                                 tempX = mod((x + 1), CellsX);
-                                tempY = mod((y + 1),CellsY);
+                                tempY = mod((y + 1), CellsY);
                                 break;
                         }
 
-                        if (Cells[tempX,tempY] == 1)
+                        if (Cells[tempX, tempY] == 1)
                             cCount++;
                     }
 

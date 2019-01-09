@@ -7,7 +7,7 @@ using System.Drawing;
 //using System.Text;
 //using System.Threading.Tasks;
 using System.Windows.Forms;
-//Kommentar BJörn
+//Kommentar BJörn, JB
 namespace GameOfLife
 {
     public partial class Form1 : Form

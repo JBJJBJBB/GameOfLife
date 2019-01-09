@@ -86,7 +86,7 @@ namespace GameOfLife
                         double tempY = y * CellsYsize;
                         cRect.X = Convert.ToInt32(tempX);
                         cRect.Y = Convert.ToInt32(tempY);
-                        cBrush.Color = cColors[Cells[x, y]-1];
+                        cBrush.Color = cColors[Cells[x, y] - 1];
                         e.Graphics.FillRectangle(cBrush, cRect);
                     }
                 }
@@ -197,7 +197,7 @@ namespace GameOfLife
                         if (cCount < 2) //Underpopulation, cell dies
                             Cells2[x, y] = 0;
                         if (cCount == 2 || cCount == 3) //Live on to next generation
-                            Cells2[x, y] = Convert.ToByte(cCount+1);
+                            Cells2[x, y] = Convert.ToByte(cCount + 1);
                         if (cCount > 3) //Overpopulation, cell dies
                             Cells2[x, y] = 0;
                     }
@@ -303,7 +303,7 @@ namespace GameOfLife
             var loaddata = comboBox1.SelectedItem as GameData;
             try
             {
-              ga.LoadGame(loaddata);
+                ga.LoadGame(loaddata);
 
             }
             catch (Exception)
@@ -312,8 +312,8 @@ namespace GameOfLife
                 throw;
             }
 
-        
-    }
+
+        }
 
         private void delButton_Click(object sender, EventArgs e)
         {
@@ -346,3 +346,4 @@ namespace GameOfLife
             }
         }
     }
+}

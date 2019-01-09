@@ -35,10 +35,10 @@ namespace GameOfLife
             {
                 var objecttoLoad = g as GameData;
                 connection.GameData.Find(g);
-               
-                
+
+
             }
-           
+
         }
 
 
@@ -62,4 +62,4 @@ namespace GameOfLife
 
         }
     }
-} }
+}

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameOfLife.BLL;
+using System;
 //using System.Collections.Generic;
 //using System.ComponentModel;
 //using System.Data;
@@ -31,6 +32,7 @@ namespace GameOfLife
         public Form1()
         {
             InitializeComponent();
+            Populate();
         }
 
 
@@ -292,9 +294,18 @@ namespace GameOfLife
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            GameData ga = new GameData();
-            var savedata = comboBox1.SelectedItem as GameData;
-            ga.SaveGame(savedata);
+            HelperClass help = new HelperClass();
+            string Name = comboBox1.Text.ToString() ;
+            try
+            {
+                help.MakeSaveData(Cells, Name);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            } 
+            Populate();
         }
 
         private void loadButton_Click(object sender, EventArgs e)
@@ -303,7 +314,7 @@ namespace GameOfLife
             var loaddata = comboBox1.SelectedItem as GameData;
             try
             {
-                ga.LoadGame(loaddata);
+           //     ga.LoadGame(loaddata);
 
             }
             catch (Exception)
@@ -341,7 +352,7 @@ namespace GameOfLife
             using (Connection conn = new Connection())
             {
                 comboBox1.DataSource = conn.GameData.ToList();
-                comboBox1.DisplayMember = "Name";
+                comboBox1.DisplayMember = "GameName";
 
             }
         }

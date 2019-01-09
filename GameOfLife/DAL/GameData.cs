@@ -29,17 +29,17 @@ namespace GameOfLife
             }
         }
         //R
-        public void LoadGame(GameData g)
-        {
-            using (Connection connection = new Connection())
-            {
-                var objecttoLoad = g as GameData;
-                connection.GameData.Find(g);
+        //public void LoadGame(GameData g)
+        //{
+        //    using (Connection connection = new Connection())
+        //    {
+        //        var objecttoLoad = g as GameData;
+        //        connection.GameData.Find(g);
 
 
-            }
+        //    }
 
-        }
+        //}
 
 
         //U

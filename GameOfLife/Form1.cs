@@ -7,12 +7,13 @@ using System.Drawing;
 //using System.Text;
 //using System.Threading.Tasks;
 using System.Windows.Forms;
-//Kommentar BJörn, JB
 namespace GameOfLife
 {
     public partial class Form1 : Form
     {
-        SolidBrush cBrush = new SolidBrush(System.Drawing.Color.Red);
+        Color[] cColors = new Color[9];
+
+        SolidBrush cBrush = new SolidBrush(Color.Red);
         Rectangle cRect = new Rectangle(0, 0, 30, 30);
         int CellsX = 300;
         int CellsY = 150;
@@ -34,6 +35,16 @@ namespace GameOfLife
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            cColors[0] = Color.Red;
+            cColors[1] = Color.Yellow;
+            cColors[2] = Color.Green;
+            cColors[3] = Color.GreenYellow;
+            cColors[4] = Color.Purple;
+            cColors[5] = Color.Blue;
+            cColors[6] = Color.BlueViolet;
+            cColors[7] = Color.DarkSeaGreen;
+            cColors[8] = Color.Orange;
+
 
         }
 
@@ -68,12 +79,13 @@ namespace GameOfLife
             {
                 for (int x = 0; x < CellsX; x++)
                 {
-                    if (Cells[x, y] == 1)
+                    if (Cells[x, y] != 0)
                     {
                         double tempX = x * CellsXsize;
                         double tempY = y * CellsYsize;
                         cRect.X = Convert.ToInt32(tempX);
                         cRect.Y = Convert.ToInt32(tempY);
+                        cBrush.Color = cColors[Cells[x, y]-1];
                         e.Graphics.FillRectangle(cBrush, cRect);
                     }
                 }
@@ -175,23 +187,23 @@ namespace GameOfLife
                                 break;
                         }
 
-                        if (Cells[tempX, tempY] == 1)
+                        if (Cells[tempX, tempY] != 0)
                             cCount++;
                     }
 
-                    if (Cells[x, y] == 1) //Current cell is alive
+                    if (Cells[x, y] != 0) //Current cell is alive
                     {
                         if (cCount < 2) //Underpopulation, cell dies
                             Cells2[x, y] = 0;
                         if (cCount == 2 || cCount == 3) //Live on to next generation
-                            Cells2[x, y] = 1;
+                            Cells2[x, y] = Convert.ToByte(cCount+1);
                         if (cCount > 3) //Overpopulation, cell dies
                             Cells2[x, y] = 0;
                     }
                     if (Cells[x, y] == 0) //Current cell is dead
                     {
                         if (cCount == 3) //A new cell is born!
-                            Cells2[x, y] = 1;
+                            Cells2[x, y] = Convert.ToByte(cCount + 1);
                     }
                 }
             }

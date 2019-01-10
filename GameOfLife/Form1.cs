@@ -43,6 +43,7 @@ namespace GameOfLife
         #region UI
         private void Form1_Load(object sender, EventArgs e)
         {
+    
             cColors[0] = Color.Red;
             cColors[1] = Color.Yellow;
             cColors[2] = Color.Green;
@@ -63,6 +64,8 @@ namespace GameOfLife
 
             }
         }
+
+
 
         private void buttonExit_Click(object sender, EventArgs e)
         {

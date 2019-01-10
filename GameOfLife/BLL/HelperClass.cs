@@ -9,10 +9,10 @@ namespace GameOfLife.BLL
 {
     class HelperClass
     {
-        static string RandomString(int length)
+        public string RandomString()
         {
             Random random = new Random();
-            const string pool = "0123456789";
+            const string pool = "01";
             var builder = new StringBuilder();
 
             for (var i = 0; i < 45000; i++)
@@ -23,10 +23,7 @@ namespace GameOfLife.BLL
 
             return builder.ToString();
         }
-
-
-
-
+  
         public void MakeSaveData(byte[,] b, string name) //OK
         {
             GameData gd = new GameData();

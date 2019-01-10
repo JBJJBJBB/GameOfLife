@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace GameOfLife
 {
     using System;
@@ -10,7 +12,9 @@ namespace GameOfLife
         public Connection()
             : base("name=Context")
         {
+         //   Database.SetInitializer<Connection>(new DropCreateDatabaseAlways<Connection>()); //Debug ONLY
             Database.SetInitializer<Connection>(new CreateDatabaseIfNotExists<Connection>());
+      
         }
 
     

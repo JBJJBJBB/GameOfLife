@@ -43,13 +43,13 @@ namespace GameOfLife
 
         //Update
 
-        public void EditSave(GameData g)
+        public void EditSave(SeedTable s)
         {
 
             using (Connection connection = new Connection())
             {
-                var objecttoedit = g as GameData;
-                connection.GameData.AddOrUpdate(g);
+                var objecttoedit = s as SeedTable;
+                connection.SeedTables.AddOrUpdate(s);
                 connection.SaveChanges();
             }
         }

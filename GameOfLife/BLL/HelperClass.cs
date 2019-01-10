@@ -66,8 +66,9 @@ namespace GameOfLife.BLL
         public void MakeEditData(object o, byte[,] b, string name)
         {
 
-
-            var g = o as GameData;
+            using (Connection conn = new Connection())
+            {
+                var g = o as GameData;
             SeedTable st = new SeedTable();
             GameData gd = new GameData();
             var sb = new StringBuilder(string.Empty);
@@ -91,15 +92,17 @@ namespace GameOfLife.BLL
 
             var seed = sb.ToString();
 
-            using (Connection conn = new Connection())
-            {
-                gd.Id = g.Id;
+                st.Id = g.SeedId;
                 st.Seed = seed;
-                gd.EditSave(gd);
+                st.EditSave(st);
+                gd.Id = g.Id;
+                gd.SeedId = st.Id;
+               gd.EditSave(gd);
+           
 
             }
 
-        } //TODO
+        } //OK
         
         public byte[,] MakeLoadData(GameData o) //OK
         {
@@ -157,7 +160,7 @@ namespace GameOfLife.BLL
                 var SeedTabletoRemove = connection.SeedTables.Find(SeedIdtoRemove) as SeedTable;
                 SeedTable st = new SeedTable();
                 GameData gd = new GameData();
-
+            
 
                 gd.DeleteSave(GameDatatoRemove);
                 st.DeleteSave(SeedTabletoRemove);
@@ -171,7 +174,7 @@ namespace GameOfLife.BLL
 
 
 
-        }
+        } //OK
     }
 }
 

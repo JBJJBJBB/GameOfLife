@@ -225,7 +225,7 @@ namespace GameOfLife
         {
             HelperClass help = new HelperClass();
             string Name = nameBox.Text.ToString();
-            if (Name != null)
+            if (Name != "")
             {
                 
             
@@ -252,11 +252,14 @@ namespace GameOfLife
 
         private void loadButton_Click(object sender, EventArgs e)  //OK
         {
+           
             GameData ga = new GameData();
             HelperClass helper = new HelperClass();;
             var o = comboBox1.SelectedItem as GameData;
-            
-           try
+            if (o != null)
+            {
+
+                try
             {
                 Cells = helper.MakeLoadData(o);
                 Cells2 = Cells;
@@ -275,7 +278,7 @@ namespace GameOfLife
                 throw;
             }
 
-
+            }
         }
 
         private void delButton_Click(object sender, EventArgs e) 

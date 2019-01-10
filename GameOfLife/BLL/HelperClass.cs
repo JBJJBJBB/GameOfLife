@@ -25,18 +25,19 @@ namespace GameOfLife.BLL
         }
 
 
-      
 
-        public void MakeSaveData(byte[,] b, string name)
+
+        public void MakeSaveData(byte[,] b, string name) //OK
         {
             GameData gd = new GameData();
+            SeedTable st = new SeedTable();
             var sb = new StringBuilder(string.Empty);
             var maxI = b.GetLength(0);
             var maxJ = b.GetLength(1);
 
             for (var i = 0; i < maxI; i++)
             {
-            for (var j = 0; j < maxJ; j++)
+                for (var j = 0; j < maxJ; j++)
                 {
                     sb.Append($"{b[i, j]}.");
                 }
@@ -45,26 +46,34 @@ namespace GameOfLife.BLL
             }
 
             var seed = sb.ToString();
-            
-            using (Connection conn = new Connection()) { 
+
+
+
+            using (Connection conn = new Connection())
+            {
+                st.Seed = seed;
+                st.SaveGame(st);
+
+
                 gd.GameName = name;
-                gd.Seed = seed;
+                gd.SeedId = st.Id;
                 gd.SaveGame(gd);
-                
+
             }
-            
+
         }
-        
+
         public void MakeEditData(object o, byte[,] b, string name)
         {
 
 
-          var g = o as GameData;
-          GameData gd = new GameData();
+            var g = o as GameData;
+            SeedTable st = new SeedTable();
+            GameData gd = new GameData();
             var sb = new StringBuilder(string.Empty);
             var maxI = b.GetLength(0);
             var maxJ = b.GetLength(1);
-        
+
             if (g.GameName != name)
             {
                 gd.GameName = name;
@@ -85,48 +94,84 @@ namespace GameOfLife.BLL
             using (Connection conn = new Connection())
             {
                 gd.Id = g.Id;
-                gd.Seed = seed;
+                st.Seed = seed;
                 gd.EditSave(gd);
 
             }
 
+        } //TODO
+        
+        public byte[,] MakeLoadData(GameData o) //OK
+        {
+            using (Connection connection = new Connection())
+            {
+                var GameObject = o as GameData;
+                SeedTable st = new SeedTable();
+
+                int SeedID = o.SeedId;
+                var SeedObject = connection.SeedTables.Find(SeedID) as SeedTable;
+
+                byte[,] Cells = new byte[300, 150];
+
+
+                string SeedString = st.LoadGame(SeedObject);
+
+                string[] SeedArray = SeedString.Split(' ');
+
+
+                for (int i = 0; i < SeedArray.Length; i++)
+                {
+                    string[] TempArray = SeedArray[i].Split('.');
+
+                    for (int j = 0; j <= TempArray.Length - 2; j++)
+                    {
+                        if (TempArray[j] != null)
+                        {
+                            var bytes = Convert.ToByte(TempArray[j]);
+                            Cells[i, j] = bytes;
+                        }
+
+                        if (TempArray[j] == null)
+                        {
+                            Cells[i, j] = 0;
+                        }
+
+                    }
+
+                }
+
+
+
+                return Cells;
+            }
         }
 
-
-        //TODO
-        public byte[,] MakeLoadData(object o)
+        public void MakeDeleteSave(object o)
         {
-            GameData gd = new GameData();
-            var objecttoload = o as GameData;
-            byte[,] Cells = new byte[300, 150];
-            string SeedString = gd.LoadGame(objecttoload);
 
-            string[] SeedArray = SeedString.Split(' ');
-
-        
-            for (int i = 0; i < SeedArray.Length ; i++)
+            using (Connection connection= new Connection())
             {
-                string[] TempArray = SeedArray[i].Split('.');
-               
-                for (int j = 0; j <= TempArray.Length-2; j++)
-                {
-                    if (TempArray[j] != null)
-                    {
-                        var bytes = Convert.ToByte(TempArray[j]);
-                        Cells[i, j] = bytes;
-                    }
 
-                    if (TempArray[j] == null)
-                    {
-                        Cells[i, j] = 0;
-                    }
-                  
-                }
-            
+                var GameDatatoRemove = o as GameData;
+                var SeedIdtoRemove = GameDatatoRemove.SeedId;
+                var SeedTabletoRemove = connection.SeedTables.Find(SeedIdtoRemove) as SeedTable;
+                SeedTable st = new SeedTable();
+                GameData gd = new GameData();
+
+
+                gd.DeleteSave(GameDatatoRemove);
+                st.DeleteSave(SeedTabletoRemove);
+
+
+
             }
-    
-            return Cells;
-            }
+
+
+
+
+
+
         }
     }
+}
 

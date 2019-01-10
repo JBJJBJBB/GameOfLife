@@ -1,7 +1,9 @@
 using System.Data.Entity.Migrations;
+using System.Linq;
 
 namespace GameOfLife
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,9 +15,9 @@ namespace GameOfLife
         [StringLength(20)]
         public string GameName { get; set; }
 
-        public string Seed { get; set; }
+        public int SeedId { get; set; }
 
-
+        public virtual ICollection<SeedTable> SeedTable { get; set; }
 
         #region  //CRUD
 
@@ -33,15 +35,17 @@ namespace GameOfLife
 
         //Read
 
-        public string LoadGame(GameData g)
-        {
-            using (Connection connection = new Connection())
-            {
-                var objecttoLoad = g as GameData;
-                string SeedString = objecttoLoad.Seed.ToString();
-                return SeedString;
-            }
-        }
+        //public string LoadGame(GameData g)
+        //{
+        //    using (Connection connection = new Connection())
+        //    {
+        //        SeedTable st = new SeedTable();
+        //        var objecttoLoad = g as GameData;
+              
+        //        string SeedString = objecttoLoad.SeedTable.ToString();
+        //        return SeedString;
+        //    }
+        //}
 
         //Update
 

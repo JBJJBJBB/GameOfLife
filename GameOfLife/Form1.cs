@@ -248,17 +248,17 @@ namespace GameOfLife
 
           
 
-        }
+        } //OK
 
-        private void loadButton_Click(object sender, EventArgs e) 
+        private void loadButton_Click(object sender, EventArgs e)  //OK
         {
             GameData ga = new GameData();
             HelperClass helper = new HelperClass();;
+            var o = comboBox1.SelectedItem as GameData;
+            
            try
             {
-                var loaddata = comboBox1.SelectedItem as GameData;
-           //   byte [,]  Cells = helper.MakeLoadData(loaddata);
-                 Cells = helper.MakeLoadData(loaddata);
+                Cells = helper.MakeLoadData(o);
                 Cells2 = Cells;
                 if (cRun.Checked == true)
                 {
@@ -268,7 +268,6 @@ namespace GameOfLife
                 
           
             pView.Refresh();
-             
             Populate();
              }
             catch
@@ -283,13 +282,14 @@ namespace GameOfLife
         {
             var deldata = comboBox1.SelectedItem as GameData;
             if (deldata != null)
-            {
                 
-           
-            GameData ga = new GameData();
+            {
+
+                HelperClass help = new HelperClass();
+                GameData ga = new GameData();
             try
             {
-               ga.DeleteSave(deldata);
+               help.MakeDeleteSave(deldata);
             }
 
             catch (Exception)
@@ -297,8 +297,9 @@ namespace GameOfLife
                 throw;
             }
             }
+            pView.Refresh();
             Populate();
-        }
+        } //OK
 
         private void editButton_Click(object sender, EventArgs e) 
         {

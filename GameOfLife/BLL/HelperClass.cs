@@ -23,7 +23,10 @@ namespace GameOfLife.BLL
 
             return builder.ToString();
         }
-        
+
+
+      
+
         public void MakeSaveData(byte[,] b, string name)
         {
             GameData gd = new GameData();
@@ -71,7 +74,7 @@ namespace GameOfLife.BLL
             {
                 for (var j = 0; j < maxJ; j++)
                 {
-                    sb.Append($"{b[i, j]}");
+                    sb.Append($"{b[i, j]}.");
                 }
 
                 sb.Append(" ");
@@ -96,27 +99,26 @@ namespace GameOfLife.BLL
             GameData gd = new GameData();
             var objecttoload = o as GameData;
             byte[,] Cells = new byte[300, 150];
-            string SeedString = gd.LoadGame(objecttoload); 
-            string [] SeedArray = SeedString.Split(' ');
+            string SeedString = gd.LoadGame(objecttoload);
 
-            for (int i = 0; i < SeedArray.Length; i++)
+            string[] SeedArray = SeedString.Split(' ');
+
+        
+            for (int i = 0; i < SeedArray.Length -2; i++)
             {
                 string[] TempArray = SeedArray[i].Split('.');
-           
-
-          
-            for (int j = 0; j < TempArray.Length; j++)
-            {
-                if (TempArray[j] != null)
+               
+                for (int j = 0; j <= TempArray.Length -2; j++)
                 {
-                    var bytes = System.Text.Encoding.Unicode.GetBytes(TempArray[j]);
-
-                 
-                        Cells[i, j] = bytes[j];
-                    
+                    if (TempArray[j] != null)
+                    {
+                        var bytes = Convert.ToByte(TempArray[j]);
+                        Cells[i, j] = bytes;
+                    }
                 }
-                }
+            
             }
+    
             return Cells;
             }
         }

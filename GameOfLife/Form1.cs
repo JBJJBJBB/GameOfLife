@@ -218,7 +218,7 @@ namespace GameOfLife
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-     
+            nameBox.Text = comboBox1.SelectedText;
         }
 
         private void saveButton_Click(object sender, EventArgs e) 
@@ -245,7 +245,7 @@ namespace GameOfLife
            try
             {
                 var loaddata = comboBox1.SelectedItem as GameData;
-                byte [,] LoadedCells = helper.MakeLoadData(loaddata);
+                Cells = helper.MakeLoadData(loaddata);
                 
                 if (cRun.Checked == true)
                 {
@@ -253,14 +253,14 @@ namespace GameOfLife
                 }
 
                 
-            ClearCells();
+          
             pView.Refresh();
              
             Populate();
              }
             catch
             {
-
+                throw;
             }
 
 
@@ -294,6 +294,7 @@ namespace GameOfLife
                 var g = comboBox1.SelectedItem as GameData;
                 helper.MakeEditData(g,Cells,Name);
                 Populate();
+                            
             }
             catch
             {

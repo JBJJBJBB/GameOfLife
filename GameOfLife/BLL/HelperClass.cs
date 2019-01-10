@@ -104,17 +104,23 @@ namespace GameOfLife.BLL
             string[] SeedArray = SeedString.Split(' ');
 
         
-            for (int i = 0; i < SeedArray.Length -2; i++)
+            for (int i = 0; i < SeedArray.Length ; i++)
             {
                 string[] TempArray = SeedArray[i].Split('.');
                
-                for (int j = 0; j <= TempArray.Length -2; j++)
+                for (int j = 0; j <= TempArray.Length-2; j++)
                 {
                     if (TempArray[j] != null)
                     {
                         var bytes = Convert.ToByte(TempArray[j]);
                         Cells[i, j] = bytes;
                     }
+
+                    if (TempArray[j] == null)
+                    {
+                        Cells[i, j] = 0;
+                    }
+                  
                 }
             
             }

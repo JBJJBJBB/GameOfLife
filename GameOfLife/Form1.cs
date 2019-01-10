@@ -225,6 +225,10 @@ namespace GameOfLife
         {
             HelperClass help = new HelperClass();
             string Name = nameBox.Text.ToString();
+            if (Name == null)
+            {
+                
+            
             try
             {
                 help.MakeSaveData(Cells, Name);
@@ -236,7 +240,9 @@ namespace GameOfLife
             }
 
             Populate();
-        } 
+        }
+            MessageBox.Show("Error no Name");
+        }
 
         private void loadButton_Click(object sender, EventArgs e) 
         {
@@ -245,7 +251,8 @@ namespace GameOfLife
            try
             {
                 var loaddata = comboBox1.SelectedItem as GameData;
-                Cells = helper.MakeLoadData(loaddata);
+           //   byte [,]  Cells = helper.MakeLoadData(loaddata);
+                 Cells = helper.MakeLoadData(loaddata);
                 
                 if (cRun.Checked == true)
                 {

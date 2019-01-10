@@ -153,7 +153,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(236, 19);
+            this.comboBox1.Location = new System.Drawing.Point(484, 18);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(145, 21);
@@ -163,7 +163,7 @@
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(383, 0);
+            this.saveButton.Location = new System.Drawing.Point(631, -1);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(80, 20);
             this.saveButton.TabIndex = 9;
@@ -174,7 +174,7 @@
             // loadButton
             // 
             this.loadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadButton.Location = new System.Drawing.Point(464, 0);
+            this.loadButton.Location = new System.Drawing.Point(712, -1);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(80, 20);
             this.loadButton.TabIndex = 10;
@@ -185,7 +185,7 @@
             // delButton
             // 
             this.delButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.delButton.Location = new System.Drawing.Point(464, 20);
+            this.delButton.Location = new System.Drawing.Point(712, 19);
             this.delButton.Name = "delButton";
             this.delButton.Size = new System.Drawing.Size(80, 20);
             this.delButton.TabIndex = 11;
@@ -196,7 +196,7 @@
             // cFiles
             // 
             this.cFiles.FormattingEnabled = true;
-            this.cFiles.Location = new System.Drawing.Point(640, 8);
+            this.cFiles.Location = new System.Drawing.Point(220, 10);
             this.cFiles.Margin = new System.Windows.Forms.Padding(2);
             this.cFiles.Name = "cFiles";
             this.cFiles.Size = new System.Drawing.Size(145, 21);
@@ -204,7 +204,7 @@
             // 
             // bLoadPreset
             // 
-            this.bLoadPreset.Location = new System.Drawing.Point(789, 7);
+            this.bLoadPreset.Location = new System.Drawing.Point(367, 8);
             this.bLoadPreset.Name = "bLoadPreset";
             this.bLoadPreset.Size = new System.Drawing.Size(75, 23);
             this.bLoadPreset.TabIndex = 13;
@@ -215,7 +215,7 @@
             // editButton
             // 
             this.editButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editButton.Location = new System.Drawing.Point(383, 20);
+            this.editButton.Location = new System.Drawing.Point(631, 19);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(80, 20);
             this.editButton.TabIndex = 14;
@@ -225,7 +225,7 @@
             // 
             // nameBox
             // 
-            this.nameBox.Location = new System.Drawing.Point(236, 1);
+            this.nameBox.Location = new System.Drawing.Point(484, 0);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(145, 20);
             this.nameBox.TabIndex = 15;

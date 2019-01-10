@@ -225,7 +225,7 @@ namespace GameOfLife
         {
             HelperClass help = new HelperClass();
             string Name = nameBox.Text.ToString();
-            if (Name == null)
+            if (Name != null)
             {
                 
             
@@ -241,7 +241,13 @@ namespace GameOfLife
 
             Populate();
         }
-            MessageBox.Show("Error no Name");
+            else
+            {
+                MessageBox.Show("Error no Name");
+            }
+
+          
+
         }
 
         private void loadButton_Click(object sender, EventArgs e) 
@@ -253,7 +259,7 @@ namespace GameOfLife
                 var loaddata = comboBox1.SelectedItem as GameData;
            //   byte [,]  Cells = helper.MakeLoadData(loaddata);
                  Cells = helper.MakeLoadData(loaddata);
-                
+                Cells2 = Cells;
                 if (cRun.Checked == true)
                 {
                     cRun.Checked = false;
@@ -276,6 +282,10 @@ namespace GameOfLife
         private void delButton_Click(object sender, EventArgs e) 
         {
             var deldata = comboBox1.SelectedItem as GameData;
+            if (deldata != null)
+            {
+                
+           
             GameData ga = new GameData();
             try
             {
@@ -286,7 +296,7 @@ namespace GameOfLife
             {
                 throw;
             }
-
+            }
             Populate();
         }
 
@@ -295,19 +305,27 @@ namespace GameOfLife
            
             HelperClass helper = new HelperClass();
             Name = nameBox.Text.ToString();
-            
-            try
-            {
-                var g = comboBox1.SelectedItem as GameData;
-                helper.MakeEditData(g,Cells,Name);
-                Populate();
-                            
-            }
-            catch
+            if (Name != "")
             {
 
+                try
+                {
+                    var g = comboBox1.SelectedItem as GameData;
+                    helper.MakeEditData(g, Cells, Name);
+                    Populate();
+
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error no Name");
             }
         }
+
 
         #endregion
 

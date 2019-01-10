@@ -23,7 +23,17 @@ namespace GameOfLife.BLL
 
             return builder.ToString();
         }
-  
+
+        //Function to get random number
+        private static readonly Random getrandom = new Random();
+
+        public int GetRandomNumber(int min, int max)
+        {
+            lock (getrandom) // synchronize
+            {
+                return getrandom.Next(min, max);
+            }
+        }
         public void MakeSaveData(byte[,] b, string name) //OK
         {
             GameData gd = new GameData();

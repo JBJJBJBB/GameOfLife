@@ -47,6 +47,9 @@
             this.bLoadPreset = new System.Windows.Forms.Button();
             this.editButton = new System.Windows.Forms.Button();
             this.nameBox = new System.Windows.Forms.TextBox();
+            this.randomBox = new System.Windows.Forms.CheckBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -157,6 +160,7 @@
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(145, 21);
+            this.comboBox1.Sorted = true;
             this.comboBox1.TabIndex = 8;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -200,6 +204,7 @@
             this.cFiles.Margin = new System.Windows.Forms.Padding(2);
             this.cFiles.Name = "cFiles";
             this.cFiles.Size = new System.Drawing.Size(145, 21);
+            this.cFiles.Sorted = true;
             this.cFiles.TabIndex = 12;
             // 
             // bLoadPreset
@@ -230,6 +235,71 @@
             this.nameBox.Size = new System.Drawing.Size(145, 20);
             this.nameBox.TabIndex = 15;
             // 
+            // randomBox
+            // 
+            this.randomBox.AutoSize = true;
+            this.randomBox.ForeColor = System.Drawing.Color.Snow;
+            this.randomBox.Location = new System.Drawing.Point(809, 17);
+            this.randomBox.Name = "randomBox";
+            this.randomBox.Size = new System.Drawing.Size(106, 17);
+            this.randomBox.TabIndex = 16;
+            this.randomBox.Text = "Randomize Color";
+            this.randomBox.UseVisualStyleBackColor = true;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.AutoCompleteCustomSource.AddRange(new string[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"});
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"});
+            this.comboBox2.Location = new System.Drawing.Point(910, 0);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(40, 21);
+            this.comboBox2.Sorted = true;
+            this.comboBox2.TabIndex = 17;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.AutoCompleteCustomSource.AddRange(new string[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"});
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"});
+            this.comboBox3.Location = new System.Drawing.Point(910, 20);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(40, 21);
+            this.comboBox3.Sorted = true;
+            this.comboBox3.TabIndex = 18;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -237,6 +307,9 @@
             this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(1222, 594);
             this.ControlBox = false;
+            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.randomBox);
             this.Controls.Add(this.nameBox);
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.bLoadPreset);
@@ -286,6 +359,9 @@
         private System.Windows.Forms.Button bLoadPreset;
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.TextBox nameBox;
+        private System.Windows.Forms.CheckBox randomBox;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox3;
     }
 }
 

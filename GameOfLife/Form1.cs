@@ -16,7 +16,7 @@ namespace GameOfLife
     public partial class Form1 : Form
     {
         //Initialize
-
+        
         Color[] cColors = new Color[9];
 
         SolidBrush cBrush = new SolidBrush(Color.Red);
@@ -43,7 +43,9 @@ namespace GameOfLife
         #region UI
         private void Form1_Load(object sender, EventArgs e)
         {
-    
+            comboBox2.SelectedIndex = 0;
+            comboBox3.SelectedIndex = 7;
+
             cColors[0] = Color.Red;
             cColors[1] = Color.Yellow;
             cColors[2] = Color.Green;
@@ -54,6 +56,7 @@ namespace GameOfLife
             cColors[7] = Color.DarkSeaGreen;
             cColors[8] = Color.Orange;
 
+  
             try
             {
                 string[] files = System.IO.Directory.GetFiles(@"Presets\");
@@ -355,6 +358,41 @@ namespace GameOfLife
 
         public void MainLoop()
         {
+
+            //Random Color Generator
+            //Get color from boxes
+            
+
+            int color1 = comboBox2.SelectedIndex;
+            int color2 = comboBox3.SelectedIndex;
+            if (color2 < color1)
+            {
+                color1 = color1 + color2;
+                color2 = color1 - color2;
+                color1 = color1 - color2;
+            }
+
+            if (color1 == color2)
+            {
+                if (color1 == 8)
+                {
+                    color2 -= 2;
+
+                }
+                else
+                {
+                    color2++;
+                }
+
+            }
+
+            HelperClass help = new HelperClass();
+            int rColor = help.GetRandomNumber(color1, color2);
+
+
+            //Random Color Generator
+
+
             for (int y = 0; y < CellsY; y++)
             {
                 for (int x = 0; x < CellsX; x++)
@@ -412,7 +450,17 @@ namespace GameOfLife
                         if (cCount < 2) //Underpopulation, cell dies
                             Cells2[x, y] = 0;
                         if (cCount == 2 || cCount == 3) //Live on to next generation
-                            Cells2[x, y] = Convert.ToByte(cCount + 1);
+
+                   //Random Color check
+                            if (randomBox.Checked == true)
+                            {
+                                Cells2[x, y] = Convert.ToByte(rColor);
+                            }
+                    
+                            else { Cells2[x, y] = Convert.ToByte(cCount + 1); }
+                    //Random Color check
+
+
                         if (cCount > 3) //Overpopulation, cell dies
                             Cells2[x, y] = 0;
                     }

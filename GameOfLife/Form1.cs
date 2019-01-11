@@ -16,7 +16,7 @@ namespace GameOfLife
     public partial class Form1 : Form
     {
         //Initialize
-    
+
         Color[] cColors = new Color[9];
         Pen sPen = new Pen(Color.Red);
         SolidBrush cBrush = new SolidBrush(Color.Red);
@@ -38,7 +38,7 @@ namespace GameOfLife
 
         double CellsXsize = 0;
         double CellsYsize = 0;
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -56,7 +56,7 @@ namespace GameOfLife
 
             try
             {
-                string[] files = System.IO.Directory.GetFiles(@"Presets\");
+                string[] files = Directory.GetFiles(@"Presets\");
                 this.cFiles.Items.AddRange(files);
             }
             catch
@@ -76,8 +76,8 @@ namespace GameOfLife
             pView.Width = this.Width;
             pView.Height = this.Height - pView.Top;
 
-            CellsXsize = (double) pView.Width / CellsX;
-            CellsYsize = (double) pView.Height / CellsY;
+            CellsXsize = (double)pView.Width / CellsX;
+            CellsYsize = (double)pView.Height / CellsY;
 
             cRect.Width = Convert.ToInt32(CellsXsize);
             cRect.Height = Convert.ToInt32(CellsYsize);
@@ -124,80 +124,8 @@ namespace GameOfLife
 
         private void pView_MouseDown(object sender, MouseEventArgs e)
         {
-            if (rPen.Checked == true) //Pen tool
+            try
             {
-                double selX = Math.Round((double)(e.X - CellsXsize / 2) / CellsXsize);
-                double selY = Math.Round((double)(e.Y - CellsYsize / 2) / CellsYsize);
-
-                lStats.Text = Convert.ToString(selX) + ", " + Convert.ToString(selY);
-
-                if (e.Button == MouseButtons.Left)
-                {
-                    Cells[Convert.ToInt32(selX), Convert.ToInt32(selY)] = 1;
-                    pView.Refresh();
-                }
-                if (e.Button == MouseButtons.Right)
-                {
-                    Cells[Convert.ToInt32(selX), Convert.ToInt32(selY)] = 0;
-                    pView.Refresh();
-                }
-            }
-
-            if (rLine.Checked == true) //Line tool
-            {
-                tSel = 1;
-                tSelX = Math.Round((double)(e.X - CellsXsize / 2) / CellsXsize);
-                tSelY = Math.Round((double)(e.Y - CellsYsize / 2) / CellsYsize);
-            }
-
-            if (rRect.Checked == true) //Rectangle tool
-            {
-                tSel = 2;
-                tSelX = Math.Round((double)(e.X - CellsXsize / 2) / CellsXsize);
-                tSelY = Math.Round((double)(e.Y - CellsYsize / 2) / CellsYsize);
-            }
-        }
-
-        private void pView_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (tSel == 1) //Line tool was selected, create the line
-            {
-                tSel = 0;
-                if (e.Button == MouseButtons.Left) //Add cells
-                    DrawLine(Convert.ToInt32(tSelX), Convert.ToInt32(tSelY), Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY2), 0);
-                if (e.Button == MouseButtons.Right) //Remove cells
-                    DrawLine(Convert.ToInt32(tSelX), Convert.ToInt32(tSelY), Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY2), 1);
-                pView.Refresh();
-            }
-
-            if (tSel == 2) //Rectangle tool was selected, create the rectangle
-            {
-                tSel = 0;
-                if (tSelX2 > tSelX && tSelY2 > tSelY)
-                {
-                    if (e.Button == MouseButtons.Left) //Add cells
-                    {
-                        DrawLine(Convert.ToInt32(tSelX), Convert.ToInt32(tSelY), Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY), 0); //Upper line
-                        DrawLine(Convert.ToInt32(tSelX), Convert.ToInt32(tSelY2), Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY2), 0); //Bottom line
-                        DrawLine(Convert.ToInt32(tSelX), Convert.ToInt32(tSelY), Convert.ToInt32(tSelX), Convert.ToInt32(tSelY2), 0); //Left line
-                        DrawLine(Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY), Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY2), 0); //Right line
-                    }
-                    if (e.Button == MouseButtons.Right) //Remove cells
-                    {
-                        DrawLine(Convert.ToInt32(tSelX), Convert.ToInt32(tSelY), Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY), 1); //Upper line
-                        DrawLine(Convert.ToInt32(tSelX), Convert.ToInt32(tSelY2), Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY2), 1); //Bottom line
-                        DrawLine(Convert.ToInt32(tSelX), Convert.ToInt32(tSelY), Convert.ToInt32(tSelX), Convert.ToInt32(tSelY2), 1); //Left line
-                        DrawLine(Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY), Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY2), 1); //Right line
-                    }
-
-                    pView.Refresh();
-                }
-            }
-        }
-
-        private void pView_MouseMove(object sender, MouseEventArgs e)
-        {
-     
                 if (rPen.Checked == true) //Pen tool
                 {
                     double selX = Math.Round((double)(e.X - CellsXsize / 2) / CellsXsize);
@@ -217,11 +145,107 @@ namespace GameOfLife
                     }
                 }
 
-            if (tSel == 1 || tSel == 2) //Line tool or rectangle tool is selected
+                if (rLine.Checked == true) //Line tool
+                {
+                    tSel = 1;
+                    tSelX = Math.Round((double)(e.X - CellsXsize / 2) / CellsXsize);
+                    tSelY = Math.Round((double)(e.Y - CellsYsize / 2) / CellsYsize);
+                    tSelX2 = tSelX + 1;
+                    tSelY2 = tSelY + 1;
+                }
+
+                if (rRect.Checked == true) //Rectangle tool
+                {
+                    tSel = 2;
+                    tSelX = Math.Round((double)(e.X - CellsXsize / 2) / CellsXsize);
+                    tSelY = Math.Round((double)(e.Y - CellsYsize / 2) / CellsYsize);
+                    tSelX2 = tSelX + 1;
+                    tSelY2 = tSelY + 1;
+                }
+            }
+            catch
             {
-                tSelX2 = Math.Round((double)(e.X - CellsXsize / 2) / CellsXsize);
-                tSelY2 = Math.Round((double)(e.Y - CellsYsize / 2) / CellsYsize);
-                pView.Refresh();
+
+            }
+        }
+
+        private void pView_MouseUp(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (tSel == 1) //Line tool was selected, create the line
+                {
+                    tSel = 0;
+                    if (e.Button == MouseButtons.Left) //Add cells
+                        DrawLine(Convert.ToInt32(tSelX), Convert.ToInt32(tSelY), Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY2), 0);
+                    if (e.Button == MouseButtons.Right) //Remove cells
+                        DrawLine(Convert.ToInt32(tSelX), Convert.ToInt32(tSelY), Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY2), 1);
+                    pView.Refresh();
+                }
+
+                if (tSel == 2) //Rectangle tool was selected, create the rectangle
+                {
+                    tSel = 0;
+                    if (tSelX2 > tSelX && tSelY2 > tSelY && tSelY2 > 0)
+                    {
+                        if (e.Button == MouseButtons.Left) //Add cells
+                        {
+                            DrawLine(Convert.ToInt32(tSelX), Convert.ToInt32(tSelY), Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY), 0); //Upper line
+                            DrawLine(Convert.ToInt32(tSelX), Convert.ToInt32(tSelY2), Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY2), 0); //Bottom line
+                            DrawLine(Convert.ToInt32(tSelX), Convert.ToInt32(tSelY), Convert.ToInt32(tSelX), Convert.ToInt32(tSelY2), 0); //Left line
+                            DrawLine(Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY), Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY2), 0); //Right line
+                        }
+                        if (e.Button == MouseButtons.Right) //Remove cells
+                        {
+                            DrawLine(Convert.ToInt32(tSelX), Convert.ToInt32(tSelY), Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY), 1); //Upper line
+                            DrawLine(Convert.ToInt32(tSelX), Convert.ToInt32(tSelY2), Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY2), 1); //Bottom line
+                            DrawLine(Convert.ToInt32(tSelX), Convert.ToInt32(tSelY), Convert.ToInt32(tSelX), Convert.ToInt32(tSelY2), 1); //Left line
+                            DrawLine(Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY), Convert.ToInt32(tSelX2), Convert.ToInt32(tSelY2), 1); //Right line
+                        }
+
+                        pView.Refresh();
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void pView_MouseMove(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (rPen.Checked == true) //Pen tool
+                {
+                    double selX = Math.Round((double)(e.X - CellsXsize / 2) / CellsXsize);
+                    double selY = Math.Round((double)(e.Y - CellsYsize / 2) / CellsYsize);
+
+                    lStats.Text = Convert.ToString(selX) + ", " + Convert.ToString(selY);
+
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        Cells[Convert.ToInt32(selX), Convert.ToInt32(selY)] = 1;
+                        pView.Refresh();
+                    }
+                    if (e.Button == MouseButtons.Right)
+                    {
+                        Cells[Convert.ToInt32(selX), Convert.ToInt32(selY)] = 0;
+                        pView.Refresh();
+                    }
+                }
+
+                if (tSel == 1 || tSel == 2) //Line tool or rectangle tool is selected
+                {
+                    tSelX2 = Math.Round((double)(e.X - CellsXsize / 2) / CellsXsize);
+                    tSelY2 = Math.Round((double)(e.Y - CellsYsize / 2) / CellsYsize);
+                    pView.Refresh();
+                }
+            }
+            catch
+            {
+
             }
         }
 
@@ -268,7 +292,7 @@ namespace GameOfLife
         {
             timer1.Interval = hSpeed.Value;
         }
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             MainLoop();
@@ -333,60 +357,60 @@ namespace GameOfLife
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-          nameBox.Text = comboBox1.Text.Trim();
+            nameBox.Text = comboBox1.Text.Trim();
         }
 
-        private void saveButton_Click(object sender, EventArgs e) 
+        private void saveButton_Click(object sender, EventArgs e)
         {
             HelperClass help = new HelperClass();
             string Name = nameBox.Text.ToString();
             if (Name != null)
             {
-                
-            
-            try
-            {
-                help.MakeSaveData(Cells, Name);
-               
-            }
-            catch (Exception)
-            {
 
-                throw;
-            }
 
-            Populate(Name);
-        }
+                try
+                {
+                    help.MakeSaveData(Cells, Name);
+
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+                Populate(Name);
+            }
             else
             {
                 MessageBox.Show("Error no Name");
             }
 
-          
+
 
         }
 
-        private void loadButton_Click(object sender, EventArgs e) 
+        private void loadButton_Click(object sender, EventArgs e)
         {
             GameData ga = new GameData();
-            HelperClass helper = new HelperClass();;
+            HelperClass helper = new HelperClass(); ;
             try
             {
                 var loaddata = comboBox1.SelectedItem as GameData;
-           //   byte [,]  Cells = helper.MakeLoadData(loaddata);
-                 Cells = helper.MakeLoadData(loaddata);
+                //   byte [,]  Cells = helper.MakeLoadData(loaddata);
+                Cells = helper.MakeLoadData(loaddata);
                 Cells2 = Cells;
                 if (cRun.Checked == true)
                 {
                     cRun.Checked = false;
                 }
 
-                
-          
-            pView.Refresh();
-             
-            Populate();
-             }
+
+
+                pView.Refresh();
+
+                Populate();
+            }
             catch
             {
                 throw;
@@ -395,30 +419,30 @@ namespace GameOfLife
 
         }
 
-        private void delButton_Click(object sender, EventArgs e) 
+        private void delButton_Click(object sender, EventArgs e)
         {
             var deldata = comboBox1.SelectedItem as GameData;
             if (deldata != null)
             {
-                
-           
-            GameData ga = new GameData();
-            try
-            {
-               ga.DeleteSave(deldata);
-            }
 
-            catch (Exception)
-            {
-                throw;
-            }
+
+                GameData ga = new GameData();
+                try
+                {
+                    ga.DeleteSave(deldata);
+                }
+
+                catch (Exception)
+                {
+                    throw;
+                }
             }
             Populate();
         }
 
-        private void editButton_Click(object sender, EventArgs e) 
+        private void editButton_Click(object sender, EventArgs e)
         {
-           
+
             HelperClass helper = new HelperClass();
             Name = nameBox.Text.ToString();
             if (Name != "")
@@ -459,7 +483,7 @@ namespace GameOfLife
                 var ds = conn.GameData.ToList();
                 comboBox1.DisplayMember = "GameName".Trim();
                 comboBox1.DataSource = ds;
-              this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+                this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             }
         }
 
@@ -467,22 +491,22 @@ namespace GameOfLife
         {
             if (Name != "")
             {
-                
-            
-            comboBox1.ResetText();
-            GameData ga = new GameData();
-
-            using (Connection conn = new Connection())
-            {
 
 
-                var ds = conn.GameData.ToList();
-                comboBox1.DataSource = ds;
+                comboBox1.ResetText();
+                GameData ga = new GameData();
+
+                using (Connection conn = new Connection())
+                {
+
+
+                    var ds = conn.GameData.ToList();
+                    comboBox1.DataSource = ds;
                     comboBox1.SelectedText = Name;
-                this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+                    this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
                 }
             }
-            else {Populate();}
+            else { Populate(); }
         }
 
         public void MainLoop()
@@ -731,5 +755,5 @@ namespace GameOfLife
             pView.Refresh();
         }
     }
-#endregion
+    #endregion
 }

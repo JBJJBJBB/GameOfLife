@@ -16,9 +16,7 @@ namespace GameOfLife
     public partial class Form1 : Form
     {
         //Initialize
-        
-
-
+    
         Color[] cColors = new Color[9];
         Pen sPen = new Pen(Color.Red);
         SolidBrush cBrush = new SolidBrush(Color.Red);
@@ -50,8 +48,6 @@ namespace GameOfLife
         #region UI
         private void Form1_Load(object sender, EventArgs e)
         {
-         
-
             CreateGradient(Color.Red, Color.Blue);
             cRule.Items.Add("Conway");
             cRule.Items.Add("Day & Night");
@@ -337,7 +333,7 @@ namespace GameOfLife
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            nameBox.Text = comboBox1.Text.Trim();
+          nameBox.Text = comboBox1.Text.Trim();
         }
 
         private void saveButton_Click(object sender, EventArgs e) 
@@ -374,7 +370,7 @@ namespace GameOfLife
         {
             GameData ga = new GameData();
             HelperClass helper = new HelperClass();;
-           try
+            try
             {
                 var loaddata = comboBox1.SelectedItem as GameData;
            //   byte [,]  Cells = helper.MakeLoadData(loaddata);
@@ -439,6 +435,7 @@ namespace GameOfLife
                 {
                     throw;
                 }
+                Populate(Name);
             }
             else
             {
@@ -480,7 +477,8 @@ namespace GameOfLife
 
 
                 var ds = conn.GameData.ToList();
-                comboBox1.SelectedText = Name;
+                comboBox1.DataSource = ds;
+                    comboBox1.SelectedText = Name;
                 this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
                 }
             }

@@ -161,17 +161,17 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(766, 20);
+            this.comboBox1.Location = new System.Drawing.Point(779, 16);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(145, 21);
+            this.comboBox1.Size = new System.Drawing.Size(157, 21);
             this.comboBox1.TabIndex = 8;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(913, 1);
+            this.saveButton.Location = new System.Drawing.Point(1088, -4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(80, 20);
             this.saveButton.TabIndex = 9;
@@ -182,7 +182,7 @@
             // loadButton
             // 
             this.loadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadButton.Location = new System.Drawing.Point(994, 1);
+            this.loadButton.Location = new System.Drawing.Point(779, -3);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(80, 20);
             this.loadButton.TabIndex = 10;
@@ -193,7 +193,7 @@
             // delButton
             // 
             this.delButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.delButton.Location = new System.Drawing.Point(994, 21);
+            this.delButton.Location = new System.Drawing.Point(856, -3);
             this.delButton.Name = "delButton";
             this.delButton.Size = new System.Drawing.Size(80, 20);
             this.delButton.TabIndex = 11;
@@ -223,7 +223,7 @@
             // editButton
             // 
             this.editButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editButton.Location = new System.Drawing.Point(913, 21);
+            this.editButton.Location = new System.Drawing.Point(1011, -4);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(80, 20);
             this.editButton.TabIndex = 14;
@@ -233,9 +233,9 @@
             // 
             // nameBox
             // 
-            this.nameBox.Location = new System.Drawing.Point(766, 2);
+            this.nameBox.Location = new System.Drawing.Point(1011, 16);
             this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(145, 20);
+            this.nameBox.Size = new System.Drawing.Size(157, 20);
             this.nameBox.TabIndex = 15;
             // 
             // label3

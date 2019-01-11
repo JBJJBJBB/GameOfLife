@@ -16,6 +16,8 @@ namespace GameOfLife
     public partial class Form1 : Form
     {
         //Initialize
+        
+
 
         Color[] cColors = new Color[9];
         Pen sPen = new Pen(Color.Red);
@@ -48,6 +50,8 @@ namespace GameOfLife
         #region UI
         private void Form1_Load(object sender, EventArgs e)
         {
+         
+
             CreateGradient(Color.Red, Color.Blue);
             cRule.Items.Add("Conway");
             cRule.Items.Add("Day & Night");
@@ -333,7 +337,7 @@ namespace GameOfLife
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            nameBox.Text = comboBox1.SelectedText;
+            nameBox.Text = comboBox1.Text.Trim();
         }
 
         private void saveButton_Click(object sender, EventArgs e) 
@@ -347,6 +351,7 @@ namespace GameOfLife
             try
             {
                 help.MakeSaveData(Cells, Name);
+               
             }
             catch (Exception)
             {
@@ -354,7 +359,7 @@ namespace GameOfLife
                 throw;
             }
 
-            Populate();
+            Populate(Name);
         }
             else
             {
@@ -455,10 +460,31 @@ namespace GameOfLife
             using (Connection conn = new Connection())
             {
                 var ds = conn.GameData.ToList();
+                comboBox1.DisplayMember = "GameName".Trim();
                 comboBox1.DataSource = ds;
-                comboBox1.DisplayMember = "GameName";
-
+              this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             }
+        }
+
+        void Populate(string Name)
+        {
+            if (Name != "")
+            {
+                
+            
+            comboBox1.ResetText();
+            GameData ga = new GameData();
+
+            using (Connection conn = new Connection())
+            {
+
+
+                var ds = conn.GameData.ToList();
+                comboBox1.SelectedText = Name;
+                this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+                }
+            }
+            else {Populate();}
         }
 
         public void MainLoop()

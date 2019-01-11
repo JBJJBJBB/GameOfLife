@@ -398,10 +398,12 @@ namespace GameOfLife
             {
                 var loaddata = comboBox1.SelectedItem as GameData;
                 //   byte [,]  Cells = helper.MakeLoadData(loaddata);
+                ClearCells();
                 Cells = helper.MakeLoadData(loaddata);
                 if (cRun.Checked == true)
                 {
-                    cRun.Checked = false;
+                  
+                   cRun.Checked = false;
                 }
 
 

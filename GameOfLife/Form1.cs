@@ -43,7 +43,7 @@ namespace GameOfLife
         #region UI
         private void Form1_Load(object sender, EventArgs e)
         {
-            comboBox2.SelectedIndex = 0;
+            comboBox2.SelectedIndex = 1;
             comboBox3.SelectedIndex = 7;
 
             cColors[0] = Color.Red;
@@ -365,6 +365,7 @@ namespace GameOfLife
 
             int color1 = comboBox2.SelectedIndex;
             int color2 = comboBox3.SelectedIndex;
+            
             if (color2 < color1)
             {
                 color1 = color1 + color2;
@@ -541,7 +542,10 @@ namespace GameOfLife
             cFPS = 0;
         }
 
-   
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 #endregion
 }

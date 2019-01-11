@@ -272,6 +272,7 @@
             this.comboBox2.Size = new System.Drawing.Size(40, 21);
             this.comboBox2.Sorted = true;
             this.comboBox2.TabIndex = 17;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // comboBox3
             // 

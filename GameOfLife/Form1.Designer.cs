@@ -47,6 +47,13 @@
             this.bLoadPreset = new System.Windows.Forms.Button();
             this.editButton = new System.Windows.Forms.Button();
             this.nameBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cRule = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.rRect = new System.Windows.Forms.RadioButton();
+            this.rLine = new System.Windows.Forms.RadioButton();
+            this.rPen = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,6 +69,7 @@
             this.pView.Paint += new System.Windows.Forms.PaintEventHandler(this.pView_Paint);
             this.pView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pView_MouseDown);
             this.pView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pView_MouseMove);
+            this.pView.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pView_MouseUp);
             // 
             // buttonExit
             // 
@@ -77,9 +85,9 @@
             // bClear
             // 
             this.bClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bClear.Location = new System.Drawing.Point(135, -1);
+            this.bClear.Location = new System.Drawing.Point(281, 1);
             this.bClear.Name = "bClear";
-            this.bClear.Size = new System.Drawing.Size(80, 20);
+            this.bClear.Size = new System.Drawing.Size(42, 20);
             this.bClear.TabIndex = 2;
             this.bClear.Text = "Clear";
             this.bClear.UseVisualStyleBackColor = true;
@@ -103,7 +111,7 @@
             // 
             // hSpeed
             // 
-            this.hSpeed.Location = new System.Drawing.Point(130, 20);
+            this.hSpeed.Location = new System.Drawing.Point(312, 22);
             this.hSpeed.Minimum = 1;
             this.hSpeed.Name = "hSpeed";
             this.hSpeed.Size = new System.Drawing.Size(85, 17);
@@ -116,7 +124,7 @@
             this.cRun.AutoSize = true;
             this.cRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cRun.ForeColor = System.Drawing.Color.Red;
-            this.cRun.Location = new System.Drawing.Point(52, 22);
+            this.cRun.Location = new System.Drawing.Point(234, 24);
             this.cRun.Name = "cRun";
             this.cRun.Size = new System.Drawing.Size(75, 17);
             this.cRun.TabIndex = 5;
@@ -126,9 +134,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(52, -1);
+            this.button1.Location = new System.Drawing.Point(234, 1);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 20);
+            this.button1.Size = new System.Drawing.Size(50, 20);
             this.button1.TabIndex = 6;
             this.button1.Text = "Step";
             this.button1.UseVisualStyleBackColor = true;
@@ -153,7 +161,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(484, 18);
+            this.comboBox1.Location = new System.Drawing.Point(766, 20);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(145, 21);
@@ -163,7 +171,7 @@
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(631, -1);
+            this.saveButton.Location = new System.Drawing.Point(913, 1);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(80, 20);
             this.saveButton.TabIndex = 9;
@@ -174,7 +182,7 @@
             // loadButton
             // 
             this.loadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadButton.Location = new System.Drawing.Point(712, -1);
+            this.loadButton.Location = new System.Drawing.Point(994, 1);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(80, 20);
             this.loadButton.TabIndex = 10;
@@ -185,7 +193,7 @@
             // delButton
             // 
             this.delButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.delButton.Location = new System.Drawing.Point(712, 19);
+            this.delButton.Location = new System.Drawing.Point(994, 21);
             this.delButton.Name = "delButton";
             this.delButton.Size = new System.Drawing.Size(80, 20);
             this.delButton.TabIndex = 11;
@@ -196,7 +204,7 @@
             // cFiles
             // 
             this.cFiles.FormattingEnabled = true;
-            this.cFiles.Location = new System.Drawing.Point(220, 10);
+            this.cFiles.Location = new System.Drawing.Point(565, 18);
             this.cFiles.Margin = new System.Windows.Forms.Padding(2);
             this.cFiles.Name = "cFiles";
             this.cFiles.Size = new System.Drawing.Size(145, 21);
@@ -204,18 +212,18 @@
             // 
             // bLoadPreset
             // 
-            this.bLoadPreset.Location = new System.Drawing.Point(367, 8);
+            this.bLoadPreset.Location = new System.Drawing.Point(712, 16);
             this.bLoadPreset.Name = "bLoadPreset";
-            this.bLoadPreset.Size = new System.Drawing.Size(75, 23);
+            this.bLoadPreset.Size = new System.Drawing.Size(47, 23);
             this.bLoadPreset.TabIndex = 13;
-            this.bLoadPreset.Text = "LoadLocal";
+            this.bLoadPreset.Text = "Load";
             this.bLoadPreset.UseVisualStyleBackColor = true;
             this.bLoadPreset.Click += new System.EventHandler(this.bLoadPreset_Click);
             // 
             // editButton
             // 
             this.editButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editButton.Location = new System.Drawing.Point(631, 19);
+            this.editButton.Location = new System.Drawing.Point(913, 21);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(80, 20);
             this.editButton.TabIndex = 14;
@@ -225,10 +233,93 @@
             // 
             // nameBox
             // 
-            this.nameBox.Location = new System.Drawing.Point(484, 0);
+            this.nameBox.Location = new System.Drawing.Point(766, 2);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(145, 20);
             this.nameBox.TabIndex = 15;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(406, 1);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 15);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "Rule";
+            // 
+            // cRule
+            // 
+            this.cRule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cRule.FormattingEnabled = true;
+            this.cRule.Location = new System.Drawing.Point(409, 18);
+            this.cRule.Margin = new System.Windows.Forms.Padding(2);
+            this.cRule.Name = "cRule";
+            this.cRule.Size = new System.Drawing.Size(145, 21);
+            this.cRule.TabIndex = 26;
+            this.cRule.SelectedIndexChanged += new System.EventHandler(this.cRule_SelectedIndexChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(322, 1);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(52, 20);
+            this.button2.TabIndex = 25;
+            this.button2.Text = "Center";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // rRect
+            // 
+            this.rRect.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rRect.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rRect.Location = new System.Drawing.Point(178, 1);
+            this.rRect.Name = "rRect";
+            this.rRect.Size = new System.Drawing.Size(51, 39);
+            this.rRect.TabIndex = 24;
+            this.rRect.TabStop = true;
+            this.rRect.Text = "Rect";
+            this.rRect.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rRect.UseVisualStyleBackColor = true;
+            // 
+            // rLine
+            // 
+            this.rLine.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rLine.Location = new System.Drawing.Point(134, 1);
+            this.rLine.Name = "rLine";
+            this.rLine.Size = new System.Drawing.Size(47, 39);
+            this.rLine.TabIndex = 23;
+            this.rLine.TabStop = true;
+            this.rLine.Text = "Line";
+            this.rLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rLine.UseVisualStyleBackColor = true;
+            // 
+            // rPen
+            // 
+            this.rPen.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rPen.Checked = true;
+            this.rPen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rPen.Location = new System.Drawing.Point(90, 1);
+            this.rPen.Name = "rPen";
+            this.rPen.Size = new System.Drawing.Size(47, 39);
+            this.rPen.TabIndex = 22;
+            this.rPen.TabStop = true;
+            this.rPen.Text = "Pen";
+            this.rPen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rPen.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(562, 1);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 15);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Local presets";
             // 
             // Form1
             // 
@@ -237,6 +328,13 @@
             this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(1222, 594);
             this.ControlBox = false;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.cRule);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.rRect);
+            this.Controls.Add(this.rLine);
+            this.Controls.Add(this.rPen);
             this.Controls.Add(this.nameBox);
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.bLoadPreset);
@@ -286,6 +384,13 @@
         private System.Windows.Forms.Button bLoadPreset;
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.TextBox nameBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cRule;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.RadioButton rRect;
+        private System.Windows.Forms.RadioButton rLine;
+        private System.Windows.Forms.RadioButton rPen;
+        private System.Windows.Forms.Label label1;
     }
 }
 

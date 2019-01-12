@@ -85,9 +85,9 @@
             // bClear
             // 
             this.bClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bClear.Location = new System.Drawing.Point(281, 1);
+            this.bClear.Location = new System.Drawing.Point(295, 1);
             this.bClear.Name = "bClear";
-            this.bClear.Size = new System.Drawing.Size(42, 20);
+            this.bClear.Size = new System.Drawing.Size(53, 20);
             this.bClear.TabIndex = 2;
             this.bClear.Text = "Clear";
             this.bClear.UseVisualStyleBackColor = true;
@@ -124,7 +124,7 @@
             this.cRun.AutoSize = true;
             this.cRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cRun.ForeColor = System.Drawing.Color.Red;
-            this.cRun.Location = new System.Drawing.Point(234, 24);
+            this.cRun.Location = new System.Drawing.Point(237, 24);
             this.cRun.Name = "cRun";
             this.cRun.Size = new System.Drawing.Size(75, 17);
             this.cRun.TabIndex = 5;
@@ -134,9 +134,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(234, 1);
+            this.button1.Location = new System.Drawing.Point(237, 1);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 20);
+            this.button1.Size = new System.Drawing.Size(60, 20);
             this.button1.TabIndex = 6;
             this.button1.Text = "Step";
             this.button1.UseVisualStyleBackColor = true;
@@ -161,7 +161,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(779, 16);
+            this.comboBox1.Location = new System.Drawing.Point(838, 16);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(157, 21);
@@ -171,7 +171,7 @@
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(1088, -4);
+            this.saveButton.Location = new System.Drawing.Point(1082, -4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(80, 20);
             this.saveButton.TabIndex = 9;
@@ -182,7 +182,7 @@
             // loadButton
             // 
             this.loadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadButton.Location = new System.Drawing.Point(779, -3);
+            this.loadButton.Location = new System.Drawing.Point(838, -3);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(80, 20);
             this.loadButton.TabIndex = 10;
@@ -193,7 +193,7 @@
             // delButton
             // 
             this.delButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.delButton.Location = new System.Drawing.Point(856, -3);
+            this.delButton.Location = new System.Drawing.Point(915, -3);
             this.delButton.Name = "delButton";
             this.delButton.Size = new System.Drawing.Size(80, 20);
             this.delButton.TabIndex = 11;
@@ -207,12 +207,12 @@
             this.cFiles.Location = new System.Drawing.Point(565, 18);
             this.cFiles.Margin = new System.Windows.Forms.Padding(2);
             this.cFiles.Name = "cFiles";
-            this.cFiles.Size = new System.Drawing.Size(145, 21);
+            this.cFiles.Size = new System.Drawing.Size(209, 21);
             this.cFiles.TabIndex = 12;
             // 
             // bLoadPreset
             // 
-            this.bLoadPreset.Location = new System.Drawing.Point(712, 16);
+            this.bLoadPreset.Location = new System.Drawing.Point(775, 16);
             this.bLoadPreset.Name = "bLoadPreset";
             this.bLoadPreset.Size = new System.Drawing.Size(47, 23);
             this.bLoadPreset.TabIndex = 13;
@@ -223,7 +223,7 @@
             // editButton
             // 
             this.editButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editButton.Location = new System.Drawing.Point(1011, -4);
+            this.editButton.Location = new System.Drawing.Point(1005, -4);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(80, 20);
             this.editButton.TabIndex = 14;
@@ -233,7 +233,7 @@
             // 
             // nameBox
             // 
-            this.nameBox.Location = new System.Drawing.Point(1011, 16);
+            this.nameBox.Location = new System.Drawing.Point(1005, 16);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(157, 20);
             this.nameBox.TabIndex = 15;
@@ -262,7 +262,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(322, 1);
+            this.button2.Location = new System.Drawing.Point(345, 1);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(52, 20);
             this.button2.TabIndex = 25;
@@ -353,7 +353,7 @@
             this.Controls.Add(this.pView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
-            this.Text = "Game Of Life";
+            this.Text = " ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);

@@ -1,14 +1,8 @@
 ﻿using GameOfLife.BLL;
 using System;
-//using System.Collections.Generic;
-//using System.ComponentModel;
-//using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GameOfLife
@@ -310,7 +304,7 @@ namespace GameOfLife
             {
                 string path = cFiles.Text;
 
-                if (!File.Exists(path))
+                if (!File.Exists(@path))
                 {
 
                 }
@@ -325,7 +319,7 @@ namespace GameOfLife
                     // Open the stream and read it back.
                     using (StreamReader sr = File.OpenText(@path))
                     {
-                        int yPos = 40;
+                        int yPos = 0;
                         string s = "";
                         while ((s = sr.ReadLine()) != null)
                         {
@@ -333,17 +327,18 @@ namespace GameOfLife
                             {
                                 if (s.Substring(i, 1) == "2")
                                 {
-                                    Cells[i + 50, yPos] = 0;
+                                    Cells[i, yPos] = 0;
                                 }
                                 else
                                 {
-                                    Cells[i + 50, yPos] = 1;
+                                    Cells[i, yPos] = 1;
                                 }
                             }
                             yPos++;
                         }
                     }
                 }
+                CenterCells();
                 pView.Refresh();
             }
             catch
@@ -730,6 +725,34 @@ namespace GameOfLife
             if (Form.ModifierKeys == Keys.None && keyData == Keys.Escape)
             {
                 Application.Exit();
+                return true;
+            }
+
+            if (Form.ModifierKeys == Keys.None && keyData == Keys.Right) //Shift right
+            {
+                ShiftCells(1, 0);
+                return true;
+            }
+            if (Form.ModifierKeys == Keys.None && keyData == Keys.Left) //Shift left
+            {
+                ShiftCells(1, 1);
+                return true;
+            }
+            if (Form.ModifierKeys == Keys.None && keyData == Keys.Up) //Shift up
+            {
+                ShiftCells(1, 2);
+                return true;
+            }
+            if (Form.ModifierKeys == Keys.None && keyData == Keys.Down) //Shift down
+            {
+                ShiftCells(1, 3);
+                return true;
+            }
+
+            if (Form.ModifierKeys == Keys.None && keyData == Keys.Delete)
+            {
+                ClearCells();
+                pView.Refresh();
                 return true;
             }
 

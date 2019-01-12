@@ -73,7 +73,7 @@ namespace GameOfLife
             CellsXsize = (double)pView.Width / CellsX;
             CellsYsize = (double)pView.Height / CellsY;
 
-            cRect.Width = Convert.ToInt32(CellsXsize);
+            cRect.Width = Convert.ToInt32(CellsXsize)+1;
             cRect.Height = Convert.ToInt32(CellsYsize);
 
         }
@@ -122,8 +122,8 @@ namespace GameOfLife
             {
                 if (rPen.Checked == true) //Pen tool
                 {
-                    double selX = Math.Round((double)(e.X - CellsXsize / 2) / CellsXsize);
-                    double selY = Math.Round((double)(e.Y - CellsYsize / 2) / CellsYsize);
+                    double selX = (double)Math.Round((e.X - CellsXsize / 2) / CellsXsize);
+                    double selY = (double)Math.Round((e.Y - CellsYsize / 2) / CellsYsize);
 
                     lStats.Text = Convert.ToString(selX) + ", " + Convert.ToString(selY);
 
@@ -142,8 +142,8 @@ namespace GameOfLife
                 if (rLine.Checked == true) //Line tool
                 {
                     tSel = 1;
-                    tSelX = Math.Round((double)(e.X - CellsXsize / 2) / CellsXsize);
-                    tSelY = Math.Round((double)(e.Y - CellsYsize / 2) / CellsYsize);
+                    tSelX = (double)Math.Round((e.X - CellsXsize / 2) / CellsXsize);
+                    tSelY = (double)Math.Round((e.Y - CellsYsize / 2) / CellsYsize);
                     tSelX2 = tSelX + 1;
                     tSelY2 = tSelY + 1;
                 }
@@ -151,8 +151,8 @@ namespace GameOfLife
                 if (rRect.Checked == true) //Rectangle tool
                 {
                     tSel = 2;
-                    tSelX = Math.Round((double)(e.X - CellsXsize / 2) / CellsXsize);
-                    tSelY = Math.Round((double)(e.Y - CellsYsize / 2) / CellsYsize);
+                    tSelX = (double)Math.Round((e.X - CellsXsize / 2) / CellsXsize);
+                    tSelY = (double)Math.Round((e.Y - CellsYsize / 2) / CellsYsize);
                     tSelX2 = tSelX + 1;
                     tSelY2 = tSelY + 1;
                 }
@@ -180,7 +180,7 @@ namespace GameOfLife
                 if (tSel == 2) //Rectangle tool was selected, create the rectangle
                 {
                     tSel = 0;
-                    if (tSelX2 > tSelX && tSelY2 > tSelY && tSelY2 > 0)
+                    if (tSelX2 > tSelX && tSelY2 > tSelY)
                     {
                         if (e.Button == MouseButtons.Left) //Add cells
                         {
@@ -232,9 +232,12 @@ namespace GameOfLife
 
                 if (tSel == 1 || tSel == 2) //Line tool or rectangle tool is selected
                 {
-                    tSelX2 = Math.Round((double)(e.X - CellsXsize / 2) / CellsXsize);
-                    tSelY2 = Math.Round((double)(e.Y - CellsYsize / 2) / CellsYsize);
-                    pView.Refresh();
+                    if (e.X > 0 && e.Y > 0 && e.X < pView.Width && e.Y < pView.Height)
+                    {
+                        tSelX2 = Math.Round((double)((e.X - CellsXsize / 2) / CellsXsize));
+                        tSelY2 = Math.Round((double)((e.Y - CellsYsize / 2) / CellsYsize));
+                        pView.Refresh();
+                    }
                 }
             }
             catch

@@ -21,6 +21,8 @@ namespace GameOfLife
 
         public string Seed { get; set; }
 
+        public int FrameNumber { get; set; }
+
         public virtual ICollection<GameData> GameData { get; set; }
 
         #region  //CRUD

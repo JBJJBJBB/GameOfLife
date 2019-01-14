@@ -37,6 +37,12 @@ namespace GameOfLife
                 .IsUnicode(false);
 
 
+            modelBuilder.Entity<SeedTable>()
+                .Property(e => e.FrameNumber);
+               
+
+
+
         }
     }
 }

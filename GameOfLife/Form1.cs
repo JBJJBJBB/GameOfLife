@@ -26,7 +26,7 @@ namespace GameOfLife
 
         byte Rule = 0; //0 = Conway, 1 = Day & Night
         int cFPS = 0;
-
+        int FrameNumber = 1;
         byte[,] Cells = new byte[300, 150];
         byte[,] Cells2 = new byte[300, 150];
 
@@ -73,7 +73,7 @@ namespace GameOfLife
             CellsXsize = (double)pView.Width / CellsX;
             CellsYsize = (double)pView.Height / CellsY;
 
-            cRect.Width = Convert.ToInt32(CellsXsize)+1;
+            cRect.Width = Convert.ToInt32(CellsXsize) + 1;
             cRect.Height = Convert.ToInt32(CellsYsize);
 
         }
@@ -368,7 +368,7 @@ namespace GameOfLife
 
                 try
                 {
-                    help.MakeSaveData(Cells, Name);
+                    help.MakeSaveData(Cells, Name, FrameNumber);
 
                 }
                 catch (Exception)
@@ -400,8 +400,8 @@ namespace GameOfLife
                 Cells = helper.MakeLoadData(loaddata);
                 if (cRun.Checked == true)
                 {
-                  
-                   cRun.Checked = false;
+
+                    cRun.Checked = false;
                 }
 
 
@@ -450,7 +450,7 @@ namespace GameOfLife
                 try
                 {
                     var g = comboBox1.SelectedItem as GameData;
-                    helper.MakeEditData(g, Cells, Name);
+                    helper.MakeEditData(g, Cells, Name, FrameNumber);
                     Populate();
 
                 }
@@ -595,7 +595,8 @@ namespace GameOfLife
                     }
                 }
             }
-
+            FrameNumber++;
+            SaveFrame();
             CopyCellsFromBuffer();
             cFPS++;
         }
@@ -700,6 +701,7 @@ namespace GameOfLife
                         Cells2[x, y] = Cells[mod(x, CellsX), mod(y - steps, CellsY)];
                 }
             }
+            
             CopyCellsFromBuffer();
             pView.Refresh();
         }
@@ -781,6 +783,45 @@ namespace GameOfLife
             CenterCells();
             pView.Refresh();
         }
+
+        private void cFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        public void SaveFrame()
+        {
+            {
+                HelperClass help = new HelperClass();
+                string Name = nameBox.Text.ToString();
+                if (Name != null)
+                {
+
+
+                    try
+                    {
+                        help.MakeSaveFrame(Cells, Name, FrameNumber);
+
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+
+                    Populate(Name);
+                }
+                else
+                {
+                    MessageBox.Show("Error no Name");
+                }
+
+
+
+            }
+        }
+        #endregion
     }
-    #endregion
 }

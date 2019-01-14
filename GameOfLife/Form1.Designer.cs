@@ -54,6 +54,8 @@
             this.rLine = new System.Windows.Forms.RadioButton();
             this.rPen = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.frameBox = new System.Windows.Forms.ComboBox();
+            this.saveBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +63,7 @@
             // 
             this.pView.BackColor = System.Drawing.Color.Black;
             this.pView.Location = new System.Drawing.Point(0, 48);
-            this.pView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pView.Margin = new System.Windows.Forms.Padding(4);
             this.pView.Name = "pView";
             this.pView.Size = new System.Drawing.Size(1267, 677);
             this.pView.TabIndex = 0;
@@ -75,8 +77,8 @@
             // buttonExit
             // 
             this.buttonExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonExit.Location = new System.Drawing.Point(1565, 0);
-            this.buttonExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonExit.Location = new System.Drawing.Point(1578, 0);
+            this.buttonExit.Margin = new System.Windows.Forms.Padding(4);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(48, 38);
             this.buttonExit.TabIndex = 1;
@@ -88,7 +90,7 @@
             // 
             this.bClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bClear.Location = new System.Drawing.Point(393, 1);
-            this.bClear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bClear.Margin = new System.Windows.Forms.Padding(4);
             this.bClear.Name = "bClear";
             this.bClear.Size = new System.Drawing.Size(71, 25);
             this.bClear.TabIndex = 2;
@@ -129,7 +131,7 @@
             this.cRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cRun.ForeColor = System.Drawing.Color.Red;
             this.cRun.Location = new System.Drawing.Point(316, 30);
-            this.cRun.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cRun.Margin = new System.Windows.Forms.Padding(4);
             this.cRun.Name = "cRun";
             this.cRun.Size = new System.Drawing.Size(94, 21);
             this.cRun.TabIndex = 5;
@@ -140,7 +142,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(316, 1);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(80, 25);
             this.button1.TabIndex = 6;
@@ -168,7 +170,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(1117, 20);
+            this.comboBox1.Location = new System.Drawing.Point(1101, 20);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(208, 24);
@@ -178,8 +180,8 @@
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(1443, -5);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveButton.Location = new System.Drawing.Point(1467, -5);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(107, 25);
             this.saveButton.TabIndex = 9;
@@ -190,8 +192,8 @@
             // loadButton
             // 
             this.loadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadButton.Location = new System.Drawing.Point(1117, -4);
-            this.loadButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.loadButton.Location = new System.Drawing.Point(1101, -4);
+            this.loadButton.Margin = new System.Windows.Forms.Padding(4);
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(107, 25);
             this.loadButton.TabIndex = 10;
@@ -202,8 +204,8 @@
             // delButton
             // 
             this.delButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.delButton.Location = new System.Drawing.Point(1220, -4);
-            this.delButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.delButton.Location = new System.Drawing.Point(1204, -4);
+            this.delButton.Margin = new System.Windows.Forms.Padding(4);
             this.delButton.Name = "delButton";
             this.delButton.Size = new System.Drawing.Size(107, 25);
             this.delButton.TabIndex = 11;
@@ -224,7 +226,7 @@
             // bLoadPreset
             // 
             this.bLoadPreset.Location = new System.Drawing.Point(1033, 20);
-            this.bLoadPreset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bLoadPreset.Margin = new System.Windows.Forms.Padding(4);
             this.bLoadPreset.Name = "bLoadPreset";
             this.bLoadPreset.Size = new System.Drawing.Size(63, 28);
             this.bLoadPreset.TabIndex = 13;
@@ -235,8 +237,8 @@
             // editButton
             // 
             this.editButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editButton.Location = new System.Drawing.Point(1340, -5);
-            this.editButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.editButton.Location = new System.Drawing.Point(1364, -5);
+            this.editButton.Margin = new System.Windows.Forms.Padding(4);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(107, 25);
             this.editButton.TabIndex = 14;
@@ -246,8 +248,8 @@
             // 
             // nameBox
             // 
-            this.nameBox.Location = new System.Drawing.Point(1340, 20);
-            this.nameBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nameBox.Location = new System.Drawing.Point(1364, 20);
+            this.nameBox.Margin = new System.Windows.Forms.Padding(4);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(208, 22);
             this.nameBox.TabIndex = 15;
@@ -278,7 +280,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(460, 1);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(69, 25);
             this.button2.TabIndex = 25;
@@ -291,7 +293,7 @@
             this.rRect.Appearance = System.Windows.Forms.Appearance.Button;
             this.rRect.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rRect.Location = new System.Drawing.Point(237, 1);
-            this.rRect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rRect.Margin = new System.Windows.Forms.Padding(4);
             this.rRect.Name = "rRect";
             this.rRect.Size = new System.Drawing.Size(68, 48);
             this.rRect.TabIndex = 24;
@@ -305,7 +307,7 @@
             this.rLine.Appearance = System.Windows.Forms.Appearance.Button;
             this.rLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rLine.Location = new System.Drawing.Point(179, 1);
-            this.rLine.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rLine.Margin = new System.Windows.Forms.Padding(4);
             this.rLine.Name = "rLine";
             this.rLine.Size = new System.Drawing.Size(63, 48);
             this.rLine.TabIndex = 23;
@@ -320,7 +322,7 @@
             this.rPen.Checked = true;
             this.rPen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rPen.Location = new System.Drawing.Point(120, 1);
-            this.rPen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rPen.Margin = new System.Windows.Forms.Padding(4);
             this.rPen.Name = "rPen";
             this.rPen.Size = new System.Drawing.Size(63, 48);
             this.rPen.TabIndex = 22;
@@ -341,6 +343,25 @@
             this.label1.TabIndex = 28;
             this.label1.Text = "Local presets";
             // 
+            // frameBox
+            // 
+            this.frameBox.FormattingEnabled = true;
+            this.frameBox.Location = new System.Drawing.Point(1314, 19);
+            this.frameBox.Name = "frameBox";
+            this.frameBox.Size = new System.Drawing.Size(45, 24);
+            this.frameBox.TabIndex = 29;
+            this.frameBox.SelectedIndexChanged += new System.EventHandler(this.frameBox_SelectedIndexChanged);
+            // 
+            // saveBox
+            // 
+            this.saveBox.AutoSize = true;
+            this.saveBox.Location = new System.Drawing.Point(1314, 0);
+            this.saveBox.Name = "saveBox";
+            this.saveBox.Size = new System.Drawing.Size(18, 17);
+            this.saveBox.TabIndex = 30;
+            this.saveBox.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.saveBox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -348,6 +369,8 @@
             this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(1629, 731);
             this.ControlBox = false;
+            this.Controls.Add(this.saveBox);
+            this.Controls.Add(this.frameBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cRule);
@@ -372,7 +395,7 @@
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.pView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = " ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -412,6 +435,8 @@
         private System.Windows.Forms.RadioButton rLine;
         private System.Windows.Forms.RadioButton rPen;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox frameBox;
+        private System.Windows.Forms.CheckBox saveBox;
     }
 }
 

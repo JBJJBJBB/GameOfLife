@@ -67,13 +67,14 @@ namespace GameOfLife.BLL
 
         }
 
-        public void MakeSaveFrame(byte[,] b, string name, int FrameNumber) //OK
+        public void MakeSaveFrame(byte[,] b, string Name, int FrameNumber) //OK
         {
             GameData gd = new GameData();
             SeedTable st = new SeedTable();
             var sb = new StringBuilder(string.Empty);
             var maxI = b.GetLength(0);
             var maxJ = b.GetLength(1);
+            string name = gd.GameName;
 
             for (var i = 0; i < maxI; i++)
             {
@@ -92,9 +93,8 @@ namespace GameOfLife.BLL
             using (Connection conn = new Connection())
             {
                 st.Seed = seed;
-                
-
                 st.FrameNumber = FrameNumber;
+                
                 st.SaveGame(st);
                 gd.GameName = name;
                 gd.SeedId = st.Id;
@@ -185,11 +185,7 @@ namespace GameOfLife.BLL
                     }
 
                 }
-
-
-
                 return Cells;
-
             }
         }
 

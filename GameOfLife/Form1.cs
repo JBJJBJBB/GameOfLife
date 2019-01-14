@@ -391,6 +391,7 @@ namespace GameOfLife
         private void loadButton_Click(object sender, EventArgs e)
         {
             GameData ga = new GameData();
+            SeedTable st = new SeedTable();
             HelperClass helper = new HelperClass(); ;
             try
             {
@@ -404,8 +405,7 @@ namespace GameOfLife
                     cRun.Checked = false;
                 }
 
-
-
+         
                 pView.Refresh();
 
                 Populate();
@@ -483,6 +483,12 @@ namespace GameOfLife
                 comboBox1.DisplayMember = "GameName".Trim();
                 comboBox1.DataSource = ds;
                 this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+
+
+                var st = conn.SeedTables.ToList();
+                frameBox.DataSource = st;
+                frameBox.SelectedText = "FrameNumber";
+                this.frameBox.DropDownStyle = ComboBoxStyle.DropDownList;
             }
         }
 
@@ -503,6 +509,12 @@ namespace GameOfLife
                     comboBox1.DataSource = ds;
                     comboBox1.SelectedText = Name;
                     this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                    var st = conn.SeedTables.ToList();
+                    frameBox.DataSource = st;
+                    frameBox.SelectedText = "FrameNumber";
+                    this.frameBox.DropDownStyle = ComboBoxStyle.DropDownList;
+                   
                 }
             }
             else { Populate(); }
@@ -596,7 +608,7 @@ namespace GameOfLife
                 }
             }
             FrameNumber++;
-            SaveFrame();
+            if (saveBox.Checked == true) { SaveFrame(); }
             CopyCellsFromBuffer();
             cFPS++;
         }
@@ -795,7 +807,10 @@ namespace GameOfLife
         {
             {
                 HelperClass help = new HelperClass();
-                string Name = nameBox.Text.ToString();
+                GameData ga = new GameData();
+                int Id = ga.SeedId;
+                string Name = ga.GameName + FrameNumber;
+                
                 if (Name != null)
                 {
 
@@ -823,5 +838,10 @@ namespace GameOfLife
             }
         }
         #endregion
+
+        private void frameBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

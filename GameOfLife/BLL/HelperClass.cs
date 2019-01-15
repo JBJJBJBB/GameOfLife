@@ -6,31 +6,8 @@ namespace GameOfLife.BLL
 {
     class HelperClass
     {
-        public string RandomString()
-        {
-            Random random = new Random();
-            const string pool = "01";
-            var builder = new StringBuilder();
 
-            for (var i = 0; i < 45000; i++)
-            {
-                var c = pool[random.Next(0, pool.Length)];
-                builder.Append(c);
-            }
 
-            return builder.ToString();
-        }
-
-        //Function to get random number
-        private static readonly Random getrandom = new Random();
-
-        public int GetRandomNumber(int min, int max)
-        {
-            lock (getrandom) // synchronize
-            {
-                return getrandom.Next(min, max);
-            }
-        }
 
         public void MakeSaveData(byte[,] b, string name, int FrameNumber) //OK
         {
@@ -39,6 +16,7 @@ namespace GameOfLife.BLL
             var sb = new StringBuilder(string.Empty);
             var maxI = b.GetLength(0);
             var maxJ = b.GetLength(1);
+            
 
             for (var i = 0; i < maxI; i++)
             {
@@ -51,19 +29,16 @@ namespace GameOfLife.BLL
             }
 
             var seed = sb.ToString();
-
-
-
+            
             using (Connection conn = new Connection())
             {
                 st.Seed = seed;
                 st.SaveGame(st);
              
-
                 gd.GameName = name;
                 gd.Id = st.GameDataId;
                 gd.SaveGame(gd);
-
+                MakeSaveFrame(b, gd, FrameNumber);
             }
 
         }
@@ -111,14 +86,14 @@ namespace GameOfLife.BLL
             }
 
         }
-
-
+        
         public void MakeEditData(object o, byte[,] b, string name, int FrameNumber)
         {
 
             using (Connection conn = new Connection())
             {
                 var g = o as GameData;
+                var f = o as FrameTable;
                 FrameTable ft = new FrameTable();
                 GameData gd = new GameData();
                 var sb = new StringBuilder(string.Empty);
@@ -136,12 +111,11 @@ namespace GameOfLife.BLL
                     {
                         sb.Append($"{b[i, j]}.");
                     }
-
                     sb.Append(" ");
                 }
 
                 var seed = sb.ToString();
-       ft.GameDataId = g.Id;
+                ft.GameDataId = g.Id;
                 ft.Seed = seed;
                 ft.FrameNumber = FrameNumber;
                 ft.EditSave(ft);
@@ -154,7 +128,7 @@ namespace GameOfLife.BLL
 
         } //OK
 
-        public byte[,] MakeLoadData(FrameTable o) //OK
+        public byte[,] MakeLoadData(FrameTable o) 
         {
             using (Connection connection = new Connection())
             {
@@ -194,8 +168,80 @@ namespace GameOfLife.BLL
                 }
                 return Cells;
             }
-        }
+        } //OK
+        
+        public byte[,] MakeReplayData(FrameTable o, int FrameNumber) 
+        {
+            using (Connection connection = new Connection())
+            {
+                var GameObject = o as FrameTable;
+                FrameTable ft = new FrameTable();
+               
+                if (FrameNumber <= o.FrameNumber)
+                {
+                    int SeedID = o.Id++;
+                    var SeedObject = connection.FrameTables.Find(SeedID) as FrameTable;
+                    byte[,] Cells = new byte[300, 150];
+                    string SeedString = ft.LoadGame(SeedObject);
+                    string[] SeedArray = SeedString.Split(' ');
+                    
+                    for (int i = 0; i < SeedArray.Length; i++)
+                    {
+                        string[] TempArray = SeedArray[i].Split('.');
 
+                        for (int j = 0; j <= TempArray.Length - 2; j++)
+                        {
+                            if (TempArray[j] != null)
+                            {
+                                var bytes = Convert.ToByte(TempArray[j]);
+                                Cells[i, j] = bytes;
+                            }
+
+                            if (TempArray[j] == null)
+                            {
+                                Cells[i, j] = 0;
+                            }
+                        }
+                    }
+
+                    return Cells;
+                }
+                else
+                {
+                    int SeedID = o.Id;
+                    var SeedObject = connection.FrameTables.Find(SeedID) as FrameTable;
+                    byte[,] Cells = new byte[300, 150];
+                    string SeedString = ft.LoadGame(SeedObject);
+                    string[] SeedArray = SeedString.Split(' ');
+                    
+                    for (int i = 0; i < SeedArray.Length; i++)
+                    {
+                        string[] TempArray = SeedArray[i].Split('.');
+
+                        for (int j = 0; j <= TempArray.Length - 2; j++)
+                        {
+                            if (TempArray[j] != null)
+                            {
+                                var bytes = Convert.ToByte(TempArray[j]);
+                                Cells[i, j] = bytes;
+                            }
+
+                            if (TempArray[j] == null)
+                            {
+                                Cells[i, j] = 0;
+                            }
+
+                        }
+
+                    }
+
+                    return Cells;
+
+                }
+            }
+            
+        } //OK
+        
         public void MakeDeleteSave(object o)
         {
 
@@ -211,17 +257,38 @@ namespace GameOfLife.BLL
 
                 gd.DeleteSave(GameDatatoRemove);
                 st.DeleteSave(SeedTabletoRemove);
+                }
+            } //OK
 
 
+        #region Unused for Initializer
+        public string RandomString()
+        {
+            Random random = new Random();
+            const string pool = "01";
+            var builder = new StringBuilder();
 
+            for (var i = 0; i < 45000; i++)
+            {
+                var c = pool[random.Next(0, pool.Length)];
+                builder.Append(c);
             }
 
+            return builder.ToString();
+        }
 
+        //Function to get random number
+        private static readonly Random getrandom = new Random();
 
+        public int GetRandomNumber(int min, int max)
+        {
+            lock (getrandom) // synchronize
+            {
+                return getrandom.Next(min, max);
+            }
+        }
 
-
-
-        } //OK
+        #endregion
     }
 }
 

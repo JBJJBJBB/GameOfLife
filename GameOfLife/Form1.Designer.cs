@@ -53,9 +53,11 @@
             this.rRect = new System.Windows.Forms.RadioButton();
             this.rLine = new System.Windows.Forms.RadioButton();
             this.rPen = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.frameBox = new System.Windows.Forms.ComboBox();
             this.saveBox = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cReplay = new System.Windows.Forms.CheckBox();
+            this.Frame = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +78,7 @@
             // buttonExit
             // 
             this.buttonExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonExit.Location = new System.Drawing.Point(1190, 0);
+            this.buttonExit.Location = new System.Drawing.Point(1280, 0);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(36, 31);
             this.buttonExit.TabIndex = 1;
@@ -164,7 +166,7 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(826, 16);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(157, 21);
             this.comboBox1.TabIndex = 8;
@@ -173,7 +175,7 @@
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(1106, -4);
+            this.saveButton.Location = new System.Drawing.Point(1119, -2);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(80, 20);
             this.saveButton.TabIndex = 9;
@@ -207,7 +209,7 @@
             // 
             this.cFiles.FormattingEnabled = true;
             this.cFiles.Location = new System.Drawing.Point(565, 18);
-            this.cFiles.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cFiles.Margin = new System.Windows.Forms.Padding(2);
             this.cFiles.Name = "cFiles";
             this.cFiles.Size = new System.Drawing.Size(209, 21);
             this.cFiles.TabIndex = 12;
@@ -215,9 +217,9 @@
             // 
             // bLoadPreset
             // 
-            this.bLoadPreset.Location = new System.Drawing.Point(775, 16);
+            this.bLoadPreset.Location = new System.Drawing.Point(775, 18);
             this.bLoadPreset.Name = "bLoadPreset";
-            this.bLoadPreset.Size = new System.Drawing.Size(47, 23);
+            this.bLoadPreset.Size = new System.Drawing.Size(49, 20);
             this.bLoadPreset.TabIndex = 13;
             this.bLoadPreset.Text = "Load";
             this.bLoadPreset.UseVisualStyleBackColor = true;
@@ -226,7 +228,7 @@
             // editButton
             // 
             this.editButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editButton.Location = new System.Drawing.Point(1029, -4);
+            this.editButton.Location = new System.Drawing.Point(1196, -2);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(80, 20);
             this.editButton.TabIndex = 14;
@@ -236,7 +238,7 @@
             // 
             // nameBox
             // 
-            this.nameBox.Location = new System.Drawing.Point(1029, 16);
+            this.nameBox.Location = new System.Drawing.Point(1119, 17);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(157, 20);
             this.nameBox.TabIndex = 15;
@@ -257,7 +259,7 @@
             this.cRule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cRule.FormattingEnabled = true;
             this.cRule.Location = new System.Drawing.Point(409, 18);
-            this.cRule.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cRule.Margin = new System.Windows.Forms.Padding(2);
             this.cRule.Name = "cRule";
             this.cRule.Size = new System.Drawing.Size(145, 21);
             this.cRule.TabIndex = 26;
@@ -313,22 +315,11 @@
             this.rPen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rPen.UseVisualStyleBackColor = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(562, 1);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 15);
-            this.label1.TabIndex = 28;
-            this.label1.Text = "Local presets";
-            // 
             // frameBox
             // 
             this.frameBox.FormattingEnabled = true;
-            this.frameBox.Location = new System.Drawing.Point(983, 16);
-            this.frameBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.frameBox.Location = new System.Drawing.Point(985, 16);
+            this.frameBox.Margin = new System.Windows.Forms.Padding(2);
             this.frameBox.Name = "frameBox";
             this.frameBox.Size = new System.Drawing.Size(46, 21);
             this.frameBox.TabIndex = 29;
@@ -337,24 +328,66 @@
             // saveBox
             // 
             this.saveBox.AutoSize = true;
-            this.saveBox.Location = new System.Drawing.Point(986, 0);
-            this.saveBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.saveBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveBox.ForeColor = System.Drawing.Color.Red;
+            this.saveBox.Location = new System.Drawing.Point(1040, 2);
+            this.saveBox.Margin = new System.Windows.Forms.Padding(2);
             this.saveBox.Name = "saveBox";
-            this.saveBox.Size = new System.Drawing.Size(15, 14);
+            this.saveBox.Size = new System.Drawing.Size(67, 17);
             this.saveBox.TabIndex = 30;
+            this.saveBox.Text = "Record";
             this.saveBox.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.saveBox.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(562, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 13);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Local Presets";
+            // 
+            // cReplay
+            // 
+            this.cReplay.AutoSize = true;
+            this.cReplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cReplay.ForeColor = System.Drawing.Color.Red;
+            this.cReplay.Location = new System.Drawing.Point(1040, 20);
+            this.cReplay.Margin = new System.Windows.Forms.Padding(2);
+            this.cReplay.Name = "cReplay";
+            this.cReplay.Size = new System.Drawing.Size(65, 17);
+            this.cReplay.TabIndex = 33;
+            this.cReplay.Text = "Replay";
+            this.cReplay.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.cReplay.UseVisualStyleBackColor = true;
+            // 
+            // Frame
+            // 
+            this.Frame.AutoSize = true;
+            this.Frame.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Frame.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Frame.ForeColor = System.Drawing.Color.Red;
+            this.Frame.Location = new System.Drawing.Point(986, 1);
+            this.Frame.Name = "Frame";
+            this.Frame.Size = new System.Drawing.Size(41, 13);
+            this.Frame.TabIndex = 34;
+            this.Frame.Text = "Frame";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Navy;
-            this.ClientSize = new System.Drawing.Size(1222, 594);
+            this.ClientSize = new System.Drawing.Size(1470, 594);
             this.ControlBox = false;
+            this.Controls.Add(this.Frame);
+            this.Controls.Add(this.cReplay);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.saveBox);
             this.Controls.Add(this.frameBox);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cRule);
             this.Controls.Add(this.button2);
@@ -416,9 +449,11 @@
         private System.Windows.Forms.RadioButton rRect;
         private System.Windows.Forms.RadioButton rLine;
         private System.Windows.Forms.RadioButton rPen;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox frameBox;
         private System.Windows.Forms.CheckBox saveBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox cReplay;
+        private System.Windows.Forms.Label Frame;
     }
 }
 

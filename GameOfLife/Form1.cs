@@ -69,6 +69,7 @@ namespace GameOfLife
             }
 
 
+
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
@@ -126,7 +127,7 @@ namespace GameOfLife
 
         private void pView_Click(object sender, EventArgs e)
         {
-
+      
         }
 
         private void pView_MouseDown(object sender, MouseEventArgs e)
@@ -305,8 +306,15 @@ namespace GameOfLife
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (cReplay.Checked == true)
+            {
+                Replay();
+
+            }
+            else { 
             MainLoop();
             pView.Refresh();
+            }
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -365,7 +373,7 @@ namespace GameOfLife
         
         private void frameBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+         
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -391,13 +399,12 @@ namespace GameOfLife
                 }
 
                 Populate();
+                comboBox1.Text = Name;
             }
             else
             {
                 MessageBox.Show("Error no Name");
             }
-
-
 
         }
 
@@ -405,8 +412,11 @@ namespace GameOfLife
         {
             if (comboBox1.Text != "")
             {
-                
-      
+
+                if (frameBox.SelectedItem != null)
+                {
+                    
+            
             HelperClass helper = new HelperClass();
             try
             {
@@ -433,6 +443,7 @@ namespace GameOfLife
             {
                 throw;
             }
+                }
             }
 
 
@@ -512,6 +523,7 @@ namespace GameOfLife
                     var g = comboBox1.SelectedItem as GameData;
                     comboBox1.SelectedText = Selectedtext;
                     PopulateFramebox(g);
+                 
 
                 }
                 else
@@ -529,6 +541,7 @@ namespace GameOfLife
 
                 }
             }
+
         }
 
         void PopulateFramebox(object o)
@@ -549,6 +562,7 @@ namespace GameOfLife
                     frameBox.DataSource = FrameNumbers;
                     frameBox.DisplayMember = "FrameNumber".Trim();
                     this.frameBox.DropDownStyle = ComboBoxStyle.DropDownList;
+                  
                 }
             }
 
@@ -558,11 +572,7 @@ namespace GameOfLife
 
         void Populate(object o)
         {
-          
-
-            var FrameT = o as GameData;
-            var FT = o as FrameTable;
-            if (o != null)
+          if (o != null)
             {
                 using (Connection conn = new Connection())
                 {
@@ -577,6 +587,7 @@ namespace GameOfLife
                     this.frameBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
                     comboBox1.SelectedText = val.GameName;
+                    frameBox.Text = FrameNumber.ToString();
                 }
             }
 
@@ -586,7 +597,9 @@ namespace GameOfLife
 
         public void MainLoop()
         {
+           
             var g = comboBox1.SelectedItem as GameData;
+
             for (int y = 0; y < CellsY; y++)
             {
                 for (int x = 0; x < CellsX; x++)
@@ -899,7 +912,35 @@ namespace GameOfLife
           
         }
 
+        private void Replay()
+        {
+           // timer1.Interval = 1000; // 1000ms? 
+            if (comboBox1.Text != "")
+            {
+                HelperClass helper = new HelperClass();
+                try
+                {
+                    var replaydata = frameBox.SelectedItem as FrameTable;
+                    FrameNumber = replaydata.FrameNumber;
+                    ClearCells();
+                    if (replaydata != null)
+                    {
+                        Cells = helper.MakeReplayData(replaydata, FrameNumber);
+                    }
+                    frameBox.SelectedText = FrameNumber.ToString();
+                    FrameNumber++;
+                  //  Populate(replaydata);
+                    pView.Refresh();
+                 
+                }
+                catch
+                {
+                    MessageBox.Show("End Of Replay");
+                }
+            }
 
+
+        }
     }
         #endregion
     }

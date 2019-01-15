@@ -37,7 +37,7 @@ namespace GameOfLife
             using (Connection connection = new Connection())
             {
                 var gobjecttoAdd = g as GameData;
-                connection.GameData.AddOrUpdate(g);
+                connection.GameData.Add(g);
                 connection.SaveChanges();
             }
         }
@@ -77,7 +77,7 @@ namespace GameOfLife
             using (Connection connection = new Connection())
             {
                 int remID =  g.Id;
-                var gametoremove = connection.GameData.Find(remID);
+               var gametoremove = connection.GameData.Find(remID);
                 connection.GameData.Remove(gametoremove);
                 connection.SaveChanges();
             }

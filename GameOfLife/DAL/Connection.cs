@@ -12,8 +12,8 @@ namespace GameOfLife
         public Connection()
             : base("Context")
         {
-           Database.SetInitializer<Connection>(new DropCreateDatabaseAlways<Connection>()); //Debug or after DB change
-          //  Database.SetInitializer<Connection>(new CreateDatabaseIfNotExists<Connection>());
+         //  Database.SetInitializer<Connection>(new DropCreateDatabaseAlways<Connection>()); //Debug or after DB change
+            Database.SetInitializer<Connection>(new CreateDatabaseIfNotExists<Connection>());
       
         }
 

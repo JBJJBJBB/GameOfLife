@@ -404,7 +404,11 @@ namespace GameOfLife
 
         private void loadButton_Click(object sender, EventArgs e)
         {
-           HelperClass helper = new HelperClass();
+            if (comboBox1.Text != "")
+            {
+                
+      
+            HelperClass helper = new HelperClass();
             try
             {
 
@@ -421,13 +425,15 @@ namespace GameOfLife
                     cRun.Checked = false;
                 }
 
-         
+
+                loaddata.FrameNumber = FrameNumber;
                 pView.Refresh();
 
             }
             catch
             {
                 throw;
+            }
             }
 
 

@@ -65,13 +65,9 @@
     </Compile>
     <Compile Include="DAL\GameData.cs" />
     <Compile Include="DAL\Connection.cs" />
-    <Compile Include="Migrations\201901151020066_Context.cs" />
-    <Compile Include="Migrations\201901151020066_Context.Designer.cs">
-      <DependentUpon>201901151020066_Context.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901151024273_Context1.cs" />
-    <Compile Include="Migrations\201901151024273_Context1.Designer.cs">
-      <DependentUpon>201901151024273_Context1.cs</DependentUpon>
+    <Compile Include="Migrations\201901151444535_Initial.cs" />
+    <Compile Include="Migrations\201901151444535_Initial.Designer.cs">
+      <DependentUpon>201901151444535_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -79,11 +75,8 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901151020066_Context.resx">
-      <DependentUpon>201901151020066_Context.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901151024273_Context1.resx">
-      <DependentUpon>201901151024273_Context1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901151444535_Initial.resx">
+      <DependentUpon>201901151444535_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

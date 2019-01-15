@@ -70,14 +70,17 @@ namespace GameOfLife.BLL
 
         public void MakeSaveFrame(byte[,] b, object o, int FrameNumber) //OK
         {
+
+
             GameData gd = new GameData();
             FrameTable st = new FrameTable();
             var sb = new StringBuilder(string.Empty);
             var maxI = b.GetLength(0);
             var maxJ = b.GetLength(1);
- var ft = o as GameData;
+            var ft = o as GameData;
             var id = ft.Id;
 
+        
             for (var i = 0; i < maxI; i++)
             {
                 for (var j = 0; j < maxJ; j++)
@@ -94,12 +97,17 @@ namespace GameOfLife.BLL
 
             using (Connection conn = new Connection())
             {
+                if (st.Id == 0)
+                {
+                    
+             
+
                 st.GameDataId = id;
                 st.Seed = seed;
                 st.FrameNumber = FrameNumber;
                 st.SaveGame(st);
-
-
+                }
+                else { MakeEditData(gd, b, gd.GameName,FrameNumber);}
             }
 
         }

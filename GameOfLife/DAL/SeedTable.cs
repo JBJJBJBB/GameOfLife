@@ -32,7 +32,7 @@ namespace GameOfLife
             using (Connection connection = new Connection())
             {
                 var gobjecttoAdd = s as SeedTable;
-                connection.SeedTables.Add(s);
+                connection.SeedTables.AddOrUpdate(s);
                 connection.SaveChanges();
             }
         }

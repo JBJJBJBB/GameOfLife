@@ -4,6 +4,13 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+
+using System.Text;
+using System.Threading.Tasks;
+
 
 namespace GameOfLife
 {
@@ -34,9 +41,12 @@ namespace GameOfLife
         double CellsYsize = 0;
 
         public Form1()
+
+        
         {
             InitializeComponent();
       Populate();
+            nameBox.Text = "";
         }
 
         #region UI
@@ -57,6 +67,8 @@ namespace GameOfLife
             {
 
             }
+
+
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
@@ -356,6 +368,8 @@ namespace GameOfLife
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             nameBox.Text = comboBox1.Text.Trim();
+            var o = comboBox1.SelectedItem;
+            PopulateFramebox(o);
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -377,7 +391,7 @@ namespace GameOfLife
                     throw;
                 }
 
-                Populate(Name);
+                Populate();
             }
             else
             {
@@ -410,7 +424,6 @@ namespace GameOfLife
          
                 pView.Refresh();
 
-                Populate();
             }
             catch
             {
@@ -453,14 +466,14 @@ namespace GameOfLife
                 {
                     var g = comboBox1.SelectedItem as GameData;
                     helper.MakeEditData(g, Cells, Name, FrameNumber);
-                    Populate();
+                    Populate(g);
 
                 }
                 catch (Exception)
                 {
                     throw;
                 }
-                Populate(Name);
+             
             }
             else
             {
@@ -475,26 +488,71 @@ namespace GameOfLife
         #region Modules
         void Populate()
         {
-
-            comboBox1.ResetText();
-            GameData ga = new GameData();
-
-            using (Connection conn = new Connection())
+         using (Connection conn = new Connection())
             {
-                var ds = conn.GameData.ToList();
-                comboBox1.DataSource = ds;
-                comboBox1.DisplayMember = "GameName".Trim();
-                this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
 
-                var g = comboBox1.SelectedItem as GameData;
-                PoulateFramebox(g);
+                if (comboBox1.Text != null)
+                {
+                    string Selectedtext = comboBox1.Text;
+                    comboBox1.ResetText();
+                    GameData gd = new GameData();
 
+                    var dts = conn.GameData.ToList();
+                    comboBox1.DataSource = dts;
+                    comboBox1.DisplayMember = "GameName".Trim();
+                    this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                    var g = comboBox1.SelectedItem as GameData;
+                    comboBox1.SelectedText = Selectedtext;
+                    PopulateFramebox(g);
+
+                }
+                else
+                {
+                    comboBox1.ResetText();
+                    GameData ga = new GameData();
+
+                    var ds = conn.GameData.ToList();
+                    comboBox1.DataSource = ds;
+                    comboBox1.DisplayMember = "GameName".Trim();
+                    this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                    var h = comboBox1.SelectedItem as GameData;
+                    PopulateFramebox(h);
+
+                }
             }
         }
 
 
-        void PoulateFramebox(object o)
+        void PopulateFramebox(object o)
         {
+  
+          
+            
+            var FrameT = o as GameData;
+            var FT = o as FrameTable;
+            if (o != null)
+            {
+                using (Connection conn = new Connection())
+                {
+                    var val = o as GameData;
+                    int id = val.Id;
+                    string query = "Select * from FrameTable left join GameData on FrameTable.GameDataId = GameData.Id where GameDataId = '" + id + "'";
+                    var FrameNumbers = conn.FrameTables.SqlQuery(query).ToList();
+                    frameBox.DataSource = FrameNumbers;
+                    frameBox.DisplayMember = "FrameNumber".Trim();
+                    this.frameBox.DropDownStyle = ComboBoxStyle.DropDownList;
+                }
+            }
+
+
+
+        }
+
+        void Populate(object o)
+        {
+          
 
             var FrameT = o as GameData;
             var FT = o as FrameTable;
@@ -503,45 +561,53 @@ namespace GameOfLife
                 using (Connection conn = new Connection())
                 {
 
-                 //   var ft = conn.FrameTables.ToList().Where(FrameT.Id = FT.GameDataId);
-                  
-                      var ft = conn.FrameTables.ToList();
-                    frameBox.DataSource = ft;
+
+                    var val = o as GameData;
+                    int id = val.Id;
+                    string query = "Select * from FrameTable left join GameData on FrameTable.GameDataId = GameData.Id where GameDataId = '" + id + "'";
+                    var FrameNumbers = conn.FrameTables.SqlQuery(query).ToList();
+                    frameBox.DataSource = FrameNumbers;
                     frameBox.DisplayMember = "FrameNumber".Trim();
                     this.frameBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                    comboBox1.SelectedText = val.GameName;
                 }
             }
 
 
+
         }
 
-
-        void Populate(string Name)
-        {
-            if (Name != "")
-            {
-
-
-                comboBox1.ResetText();
-                GameData ga = new GameData();
-
-                using (Connection conn = new Connection())
-                {
-                    var ds = conn.GameData.ToList();
-                    comboBox1.DataSource = ds;
-                    comboBox1.DisplayMember = "GameName".Trim();
-                    this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+        //void Populate(string Name)
+        //{
+        //    if (Name != "")
+        //    {
 
 
-                    var st = conn.SeedTables.ToList();
-                    frameBox.DataSource = st;
-                    frameBox.DisplayMember = "FrameNumber".Trim();
-                    this.frameBox.DropDownStyle = ComboBoxStyle.DropDownList;
+        //        comboBox1.ResetText();
+        //        GameData ga = new GameData();
 
-                }
-            }
-            else { Populate(); }
-        }
+        //        using (Connection conn = new Connection())
+        //        {
+        //            var id = conn.GameData.Find(Name);
+                    
+        //            var ds = conn.GameData.ToList();
+        //            comboBox1.DataSource = ds;
+        //            comboBox1.DisplayMember = "GameName".Trim();
+        //            this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+        //            comboBox1.SelectedText = Name;
+                    
+
+        //            string query = "Select * from FrameTable left join GameData on FrameTable.GameDataId = GameData.Id where GameDataId = '" + id + "'";
+        //            var FrameNumbers = conn.FrameTables.SqlQuery(query).ToList();
+        //            frameBox.DataSource = FrameNumbers;
+        //            frameBox.DisplayMember = "FrameNumber".Trim();
+        //            this.frameBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+        //        }
+        //    }
+        //    else { Populate(); }
+        //}
 
         public void MainLoop()
         {
@@ -631,8 +697,8 @@ namespace GameOfLife
                     }
                 }
             }
-            FrameNumber++;
-            if (saveBox.Checked == true) { SaveFrame(g); }
+           
+            if (saveBox.Checked == true) { SaveFrame(g); FrameNumber++; }
             CopyCellsFromBuffer();
             cFPS++;
         }
@@ -853,7 +919,7 @@ namespace GameOfLife
                         throw;
                     }
 
-                    Populate(Name);
+                    Populate(o);
                 }
                 else
                 {

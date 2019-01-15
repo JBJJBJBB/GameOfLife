@@ -111,7 +111,7 @@ namespace GameOfLife.BLL
             using (Connection conn = new Connection())
             {
                 var g = o as GameData;
-                SeedTable st = new SeedTable();
+                FrameTable ft = new FrameTable();
                 GameData gd = new GameData();
                 var sb = new StringBuilder(string.Empty);
                 var maxI = b.GetLength(0);
@@ -133,11 +133,12 @@ namespace GameOfLife.BLL
                 }
 
                 var seed = sb.ToString();
-       st.Id = g.SeedId;
-                st.Seed = seed;
-                st.EditSave(st);
+       ft.GameDataId = g.Id;
+                ft.Seed = seed;
+                ft.FrameNumber = FrameNumber;
+                ft.EditSave(ft);
                 gd.Id = g.Id;
-                gd.SeedId = st.Id;
+                gd.SeedId = ft.Id;
                 gd.EditSave(gd);
 
 

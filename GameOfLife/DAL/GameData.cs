@@ -40,7 +40,7 @@ namespace GameOfLife
             using (Connection connection = new Connection())
             {
                 var gobjecttoAdd = g as GameData;
-                connection.GameData.Add(g);
+                connection.GameData.AddOrUpdate(g);
                 connection.SaveChanges();
             }
         }

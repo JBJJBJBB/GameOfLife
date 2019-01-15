@@ -39,7 +39,7 @@ namespace GameOfLife
             using (Connection connection = new Connection())
             {
                 var gobjecttoAdd = g as FrameTable;
-                connection.FrameTables.Add(g);
+                connection.FrameTables.AddOrUpdate(g);
                 connection.SaveChanges();
             }
         }

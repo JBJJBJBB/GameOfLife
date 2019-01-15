@@ -35,7 +35,7 @@ namespace GameOfLife.BLL
         public void MakeSaveData(byte[,] b, string name, int FrameNumber) //OK
         {
             GameData gd = new GameData();
-            SeedTable st = new SeedTable();
+            FrameTable st = new FrameTable();
             var sb = new StringBuilder(string.Empty);
             var maxI = b.GetLength(0);
             var maxJ = b.GetLength(1);
@@ -61,7 +61,7 @@ namespace GameOfLife.BLL
              
 
                 gd.GameName = name;
-                gd.SeedId = st.Id;
+                gd.Id = st.GameDataId;
                 gd.SaveGame(gd);
 
             }
@@ -138,7 +138,7 @@ namespace GameOfLife.BLL
                 ft.FrameNumber = FrameNumber;
                 ft.EditSave(ft);
                 gd.Id = g.Id;
-                gd.SeedId = ft.Id;
+                gd.Id = ft.GameDataId;
                 gd.EditSave(gd);
 
 
@@ -151,8 +151,7 @@ namespace GameOfLife.BLL
             using (Connection connection = new Connection())
             {
                 var GameObject = o as FrameTable;
-                SeedTable st = new SeedTable();
-                FrameTable ft = new FrameTable();
+             FrameTable ft = new FrameTable();
                 int FrameNumber = ft.FrameNumber;
                 int SeedID = o.Id;
                 var SeedObject = connection.FrameTables.Find(SeedID) as FrameTable;
@@ -196,9 +195,9 @@ namespace GameOfLife.BLL
             {
 
                 var GameDatatoRemove = o as GameData;
-                var SeedIdtoRemove = GameDatatoRemove.SeedId;
-                var SeedTabletoRemove = connection.SeedTables.Find(SeedIdtoRemove) as SeedTable;
-                SeedTable st = new SeedTable();
+                var SeedIdtoRemove = GameDatatoRemove.Id;
+                var SeedTabletoRemove = connection.FrameTables.Find(SeedIdtoRemove) as FrameTable;
+                FrameTable st = new FrameTable();
                 GameData gd = new GameData();
 
 

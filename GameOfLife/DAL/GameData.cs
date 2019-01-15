@@ -25,10 +25,7 @@ namespace GameOfLife
         [StringLength(20)]
         public string GameName { get; set; }
 
-        public int SeedId { get; set; }
-
-        public virtual ICollection<SeedTable> SeedTables { get; set; }
-
+ 
         public virtual ICollection<FrameTable> FrameTables { get; set; }
 
         #region  //CRUD
@@ -91,23 +88,23 @@ namespace GameOfLife
 
         #region //Initializer
 
-    public class GameDataDBInitializer :DropCreateDatabaseAlways<Connection> //DEBUG ONLY
-  //  public class GameDataDBInitializer : CreateDatabaseIfNotExists<Connection>
-    {
-        HelperClass help = new HelperClass();
-        protected override void Seed(Connection context) => context.GameData.AddOrUpdate(x => x.Id,
-            new GameData() { Id = 1, GameName ="First", SeedId = 1 },
-            new GameData() { Id = 2, GameName = "Second", SeedId = 2 },
-            new GameData() { Id = 3, GameName = "Third", SeedId = 3 },
-            new GameData() { Id = 4, GameName = "Forth", SeedId = 4 },
-            new GameData() { Id = 5, GameName = "Fift", SeedId = 5 },
-            new GameData() { Id = 6, GameName = "Sixt", SeedId = 6 },
-            new GameData() { Id = 7, GameName = "Seventh", SeedId = 7 },
-            new GameData() { Id = 8, GameName = "Eight", SeedId = 8 },
-            new GameData() { Id = 9, GameName = "Nineth", SeedId = 9 },
-            new GameData() { Id = 10, GameName = "Tenth", SeedId = 10 }
+  //  public class GameDataDBInitializer :DropCreateDatabaseAlways<Connection> //DEBUG ONLY
+  ////  public class GameDataDBInitializer : CreateDatabaseIfNotExists<Connection>
+  //  {
+  //      HelperClass help = new HelperClass();
+  //      protected override void Seed(Connection context) => context.GameData.AddOrUpdate(x => x.Id,
+  //          new GameData() { Id = 1, GameName ="First", SeedId = 1 },
+  //          new GameData() { Id = 2, GameName = "Second", SeedId = 2 },
+  //          new GameData() { Id = 3, GameName = "Third", SeedId = 3 },
+  //          new GameData() { Id = 4, GameName = "Forth", SeedId = 4 },
+  //          new GameData() { Id = 5, GameName = "Fift", SeedId = 5 },
+  //          new GameData() { Id = 6, GameName = "Sixt", SeedId = 6 },
+  //          new GameData() { Id = 7, GameName = "Seventh", SeedId = 7 },
+  //          new GameData() { Id = 8, GameName = "Eight", SeedId = 8 },
+  //          new GameData() { Id = 9, GameName = "Nineth", SeedId = 9 },
+  //          new GameData() { Id = 10, GameName = "Tenth", SeedId = 10 }
       
-        );
-    }
+  //      );
+  //  }
 #endregion
 }

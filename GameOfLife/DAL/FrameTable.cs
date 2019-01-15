@@ -28,7 +28,7 @@ namespace GameOfLife
 
         public int FrameNumber { get; set; }
 
-        public virtual ICollection<GameData> GanmeDatas { get; set; }
+        public virtual ICollection<GameData> GameDatas { get; set; }
 
         #region  //CRUD
 

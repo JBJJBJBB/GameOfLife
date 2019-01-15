@@ -898,7 +898,7 @@ namespace GameOfLife
             {
 
                 HelperClass help = new HelperClass();
-                SeedTable st = new SeedTable();
+             
                 var ga = o as GameData;
                 var ft = o as FrameTable;
                    

@@ -36,7 +36,7 @@ namespace GameOfLife
         public Form1()
         {
             InitializeComponent();
-            Populate();
+      Populate();
         }
 
         #region UI
@@ -390,15 +390,17 @@ namespace GameOfLife
 
         private void loadButton_Click(object sender, EventArgs e)
         {
-            GameData ga = new GameData();
-            SeedTable st = new SeedTable();
-            HelperClass helper = new HelperClass(); ;
+           HelperClass helper = new HelperClass();
             try
             {
-                var loaddata = comboBox1.SelectedItem as GameData;
-                //   byte [,]  Cells = helper.MakeLoadData(loaddata);
+
+                var loaddata = frameBox.SelectedItem as FrameTable;
                 ClearCells();
-                Cells = helper.MakeLoadData(loaddata);
+                if (loaddata != null)
+                {
+                    Cells = helper.MakeLoadData(loaddata);
+                }
+               
                 if (cRun.Checked == true)
                 {
 
@@ -480,17 +482,39 @@ namespace GameOfLife
             using (Connection conn = new Connection())
             {
                 var ds = conn.GameData.ToList();
-                comboBox1.DisplayMember = "GameName".Trim();
                 comboBox1.DataSource = ds;
+                comboBox1.DisplayMember = "GameName".Trim();
                 this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
 
+                var g = comboBox1.SelectedItem as GameData;
+                PoulateFramebox(g);
 
-                var st = conn.SeedTables.ToList();
-                frameBox.DataSource = st;
-                frameBox.SelectedText = "FrameNumber";
-                this.frameBox.DropDownStyle = ComboBoxStyle.DropDownList;
             }
         }
+
+
+        void PoulateFramebox(object o)
+        {
+
+            var FrameT = o as GameData;
+            var FT = o as FrameTable;
+            if (o != null)
+            {
+                using (Connection conn = new Connection())
+                {
+
+                 //   var ft = conn.FrameTables.ToList().Where(FrameT.Id = FT.GameDataId);
+                  
+                      var ft = conn.FrameTables.ToList();
+                    frameBox.DataSource = ft;
+                    frameBox.DisplayMember = "FrameNumber".Trim();
+                    this.frameBox.DropDownStyle = ComboBoxStyle.DropDownList;
+                }
+            }
+
+
+        }
+
 
         void Populate(string Name)
         {
@@ -503,18 +527,17 @@ namespace GameOfLife
 
                 using (Connection conn = new Connection())
                 {
-
-
                     var ds = conn.GameData.ToList();
                     comboBox1.DataSource = ds;
-                    comboBox1.SelectedText = Name;
+                    comboBox1.DisplayMember = "GameName".Trim();
                     this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+
 
                     var st = conn.SeedTables.ToList();
                     frameBox.DataSource = st;
-                    frameBox.SelectedText = "FrameNumber";
+                    frameBox.DisplayMember = "FrameNumber".Trim();
                     this.frameBox.DropDownStyle = ComboBoxStyle.DropDownList;
-                   
+
                 }
             }
             else { Populate(); }
@@ -522,6 +545,7 @@ namespace GameOfLife
 
         public void MainLoop()
         {
+            var g = comboBox1.SelectedItem as GameData;
             for (int y = 0; y < CellsY; y++)
             {
                 for (int x = 0; x < CellsX; x++)
@@ -608,7 +632,7 @@ namespace GameOfLife
                 }
             }
             FrameNumber++;
-            if (saveBox.Checked == true) { SaveFrame(); }
+            if (saveBox.Checked == true) { SaveFrame(g); }
             CopyCellsFromBuffer();
             cFPS++;
         }
@@ -803,13 +827,16 @@ namespace GameOfLife
 
 
 
-        public void SaveFrame()
+        public void SaveFrame(object o)
         {
             {
+
                 HelperClass help = new HelperClass();
-                GameData ga = new GameData();
-                int Id = ga.SeedId;
-                string Name = ga.GameName + FrameNumber;
+                SeedTable st = new SeedTable();
+                var ga = o as GameData;
+                var ft = o as FrameTable;
+                   
+                string Name = ga.GameName;
                 
                 if (Name != null)
                 {
@@ -817,7 +844,7 @@ namespace GameOfLife
 
                     try
                     {
-                        help.MakeSaveFrame(Cells, Name, FrameNumber);
+                        help.MakeSaveFrame(Cells, o, FrameNumber);
 
                     }
                     catch (Exception)

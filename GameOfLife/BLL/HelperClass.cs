@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 
 namespace GameOfLife.BLL
@@ -57,7 +58,7 @@ namespace GameOfLife.BLL
             {
                 st.Seed = seed;
                 st.SaveGame(st);
-                st.FrameNumber = FrameNumber;
+             
 
                 gd.GameName = name;
                 gd.SeedId = st.Id;
@@ -67,14 +68,15 @@ namespace GameOfLife.BLL
 
         }
 
-        public void MakeSaveFrame(byte[,] b, string Name, int FrameNumber) //OK
+        public void MakeSaveFrame(byte[,] b, object o, int FrameNumber) //OK
         {
             GameData gd = new GameData();
-            SeedTable st = new SeedTable();
+            FrameTable st = new FrameTable();
             var sb = new StringBuilder(string.Empty);
             var maxI = b.GetLength(0);
             var maxJ = b.GetLength(1);
-            string name = gd.GameName;
+ var ft = o as GameData;
+            var id = ft.Id;
 
             for (var i = 0; i < maxI; i++)
             {
@@ -92,13 +94,11 @@ namespace GameOfLife.BLL
 
             using (Connection conn = new Connection())
             {
+                st.GameDataId = id;
                 st.Seed = seed;
                 st.FrameNumber = FrameNumber;
-                
                 st.SaveGame(st);
-                gd.GameName = name;
-                gd.SeedId = st.Id;
-                gd.SaveGame(gd);
+
 
             }
 
@@ -133,8 +133,7 @@ namespace GameOfLife.BLL
                 }
 
                 var seed = sb.ToString();
-                st.FrameNumber = FrameNumber;
-                st.Id = g.SeedId;
+       st.Id = g.SeedId;
                 st.Seed = seed;
                 st.EditSave(st);
                 gd.Id = g.Id;
@@ -146,21 +145,21 @@ namespace GameOfLife.BLL
 
         } //OK
 
-        public byte[,] MakeLoadData(GameData o) //OK
+        public byte[,] MakeLoadData(FrameTable o) //OK
         {
             using (Connection connection = new Connection())
             {
-                var GameObject = o as GameData;
+                var GameObject = o as FrameTable;
                 SeedTable st = new SeedTable();
-
-                int FrameNumber = st.FrameNumber;
-                int SeedID = o.SeedId;
-                var SeedObject = connection.SeedTables.Find(SeedID) as SeedTable;
+                FrameTable ft = new FrameTable();
+                int FrameNumber = ft.FrameNumber;
+                int SeedID = o.Id;
+                var SeedObject = connection.FrameTables.Find(SeedID) as FrameTable;
 
                 byte[,] Cells = new byte[300, 150];
 
 
-                string SeedString = st.LoadGame(SeedObject);
+                string SeedString = ft.LoadGame(SeedObject);
 
                 string[] SeedArray = SeedString.Split(' ');
 

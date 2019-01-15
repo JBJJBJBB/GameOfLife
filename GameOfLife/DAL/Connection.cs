@@ -10,9 +10,9 @@ namespace GameOfLife
     public partial class Connection : DbContext
     {
         public Connection()
-            : base("name=Context")
+            : base("Context")
         {
-         //   Database.SetInitializer<Connection>(new DropCreateDatabaseAlways<Connection>()); //Debug ONLY
+          // Database.SetInitializer<Connection>(new DropCreateDatabaseAlways<Connection>()); //Debug or after DB change
             Database.SetInitializer<Connection>(new CreateDatabaseIfNotExists<Connection>());
       
         }
@@ -21,6 +21,7 @@ namespace GameOfLife
         public virtual DbSet<GameData> GameData { get; set; }
 
         public virtual DbSet<SeedTable> SeedTables { get; set; }
+        public virtual DbSet<FrameTable> FrameTables { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -37,9 +38,12 @@ namespace GameOfLife
                 .IsUnicode(false);
 
 
-            modelBuilder.Entity<SeedTable>()
+            modelBuilder.Entity<FrameTable>()
                 .Property(e => e.FrameNumber);
-               
+
+            modelBuilder.Entity<FrameTable>()
+                .Property(e => e.GameDataId);
+
 
 
 

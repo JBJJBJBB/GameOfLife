@@ -27,7 +27,9 @@ namespace GameOfLife
 
         public int SeedId { get; set; }
 
-        public virtual ICollection<SeedTable> SeedTable { get; set; }
+        public virtual ICollection<SeedTable> SeedTables { get; set; }
+
+        public virtual ICollection<FrameTable> FrameTables { get; set; }
 
         #region  //CRUD
 

@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\HelperClass.cs" />
+    <Compile Include="DAL\FrameTable.cs" />
     <Compile Include="DAL\SeedTable.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -65,11 +66,25 @@
     </Compile>
     <Compile Include="DAL\GameData.cs" />
     <Compile Include="DAL\Connection.cs" />
+    <Compile Include="Migrations\201901151020066_Context.cs" />
+    <Compile Include="Migrations\201901151020066_Context.Designer.cs">
+      <DependentUpon>201901151020066_Context.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901151024273_Context1.cs" />
+    <Compile Include="Migrations\201901151024273_Context1.Designer.cs">
+      <DependentUpon>201901151024273_Context1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901151020066_Context.resx">
+      <DependentUpon>201901151020066_Context.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901151024273_Context1.resx">
+      <DependentUpon>201901151024273_Context1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

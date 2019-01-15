@@ -12,7 +12,7 @@ namespace GameOfLife.Migrations
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(GameOfLife.Connection context)
+        protected override void Seed(GameOfLife.Connection Context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -571,7 +571,7 @@ namespace GameOfLife
                             else
                                 Cells2[x, y] = 0; //Undercrowded/Overpopulatoin.. KILL Cell!
                         }
-                        if (Cells[x, y] == 0) //Current cell is dead
+                        else
                         {
                             if (cCount == 3) //A new cell is born!
                                 Cells2[x, y] = Convert.ToByte(cCount + 1);
